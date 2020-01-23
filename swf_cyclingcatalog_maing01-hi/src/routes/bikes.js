@@ -38,11 +38,11 @@ export const Bikes = UU5.Common.VisualComponent.create({
   addBike(obj) {
     this.setState({bikesArr: [...this.state.bikesArr, obj]});
   },
-  deleteBike(id) {
-    this.setState(prevState => ({
-      bikesArr: prevState.bikesArr.filter(el => el.id !== id )
-    }));
-  },
+  // deleteBike(id) {
+  //   this.setState(prevState => ({
+  //     bikesArr: prevState.bikesArr.filter(el => el.id !== id )
+  //   }));
+  // },
   //@@viewOn:mixins
   mixins: [
     UU5.Common.BaseMixin,
@@ -92,7 +92,6 @@ export const Bikes = UU5.Common.VisualComponent.create({
   //@@viewOn:render
   render() {
     const leadingBikes = this._getBikes(this.state.bikesArr);
-    const func = "check";
     return (
       <UU5.Bricks.Div style={{
         display: "flex",
@@ -106,7 +105,6 @@ export const Bikes = UU5.Common.VisualComponent.create({
           <UU5.Tiles.List
             tile={<ExampleTile/>}
             data={leadingBikes}
-            func={this.deleteBike}
             tileHeight={300}
             tileMinWidth={220}
             tileMaxWidth={400}
@@ -128,4 +126,4 @@ export const Bikes = UU5.Common.VisualComponent.create({
   //@@viewOff:render
 });
 
-export default Bikes;
+// export default Bikes;

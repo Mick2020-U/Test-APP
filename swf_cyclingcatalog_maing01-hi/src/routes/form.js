@@ -42,6 +42,7 @@ const CustomForm = createReactClass({
                 const res = this.getValues();
                 this.props.addBike({
                   name: res.name,
+                  id: (+new Date).toString(16),
                   uuIdentity: "4-4-1",
                   src: res.src ? res.src : 'https://www.genesisglobalschool.edu.in/wp-content/uploads/2016/09/noimage.jpg',
                   role: {

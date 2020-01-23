@@ -10,8 +10,9 @@ import Left from "./left.js";
 import Bottom from "./bottom.js";
 import About from "../routes/about.js";
 import Home from "../routes/home.js";
-import Bikes from "../routes/bikes.js";
+import {Bikes} from "../routes/bikes.js";
 import "./spa-authenticated.less";
+import {BikeDetails} from "../routes/bikeDetails";
 //@@viewOff:imports
 
 const SpaAuthenticated = UU5.Common.VisualComponent.create({
@@ -76,7 +77,8 @@ const SpaAuthenticated = UU5.Common.VisualComponent.create({
             "": "home",
             "home": { component: <Home identity={this.props.identity} /> },
             "about": { component: <About identity={this.props.identity} /> },
-            "bikes": { component: <Bikes identity={this.props.identity} /> }
+            "bikes": { component: <Bikes identity={this.props.identity} /> },
+            "bike/:id": { component: <BikeDetails identity={this.props.identity}/>, }
           }}
           controlled={false}
         />
