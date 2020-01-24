@@ -2,47 +2,23 @@
 import * as UU5 from "uu5g04";
 import "uu5g04-bricks";
 import "uu5tilesg01";
-import Config from "./config/config.js";
+import Config from "../routes/config/config.js";
 import Lsi from "../config/lsi.js";
 import ExampleTile from './example';
-import "./bikes.less";
+import "../routes/bikes.less";
 import CustomForm from "./form";
 //@@viewOff:imports
 
 
 export const Bikes = UU5.Common.VisualComponent.create({
 //@@viewOn:standardComponentLifeCycle
+
   getInitialState() {
+    let selectedOption = JSON.parse(localStorage.getItem('Bikes')) || [];
     return {
-      bikesArr: [
-        {
-          name: "Bike-1",
-          id: "1",
-          uuIdentity: "4-4-1",
-          src: "https://velosophy.cc/wp-content/uploads/2019/05/190429-Velosophy-A-048.5-945x630.png",
-          role: {
-            en: "First"
-          },
-        },
-        {
-          name: "Bike-2",
-          id: "2",
-          uuIdentity: "4-4-1",
-          src: "https://ardis-bike.com.ua/content/images/26/ardis-elite-2-bike-mtv-28-87172324086228.jpg",
-          role: {
-            en: "Second"
-          },
-        }]
+      bikesArr: selectedOption
     }
   },
-  addBike(obj) {
-    this.setState({bikesArr: [...this.state.bikesArr, obj]});
-  },
-  // deleteBike(id) {
-  //   this.setState(prevState => ({
-  //     bikesArr: prevState.bikesArr.filter(el => el.id !== id )
-  //   }));
-  // },
   //@@viewOn:mixins
   mixins: [
     UU5.Common.BaseMixin,
@@ -82,7 +58,13 @@ export const Bikes = UU5.Common.VisualComponent.create({
   //@@viewOff:overriding
 
   //@@viewOn:private
-
+  addBike(obj) {
+    this.setState({bikesArr: [...this.state.bikesArr, obj]});
+    // this.setState({
+    //   bikesArr: this.state.bikesArr.concat(obj)
+    // });
+    localStorage.setItem('Bikes', JSON.stringify(this.state.bikesArr))
+  },
   _getBikes(arr) {
     return arr;
   },
@@ -117,7 +99,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
             scrollElement={window}
           />
         </UU5.Bricks.Section>
-        <UU5.Bricks.Section style={{display: "flex", margin: "auto"}}>
+        <UU5.Bricks.Section style={{display: "flex", margin: "auto", width: "100%"}}>
           <CustomForm addBike={this.addBike}/>
         </UU5.Bricks.Section>
       </UU5.Bricks.Div>

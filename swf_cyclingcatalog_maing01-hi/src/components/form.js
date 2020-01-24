@@ -7,6 +7,10 @@ import "uu5g04-bricks";
 import "uu5g04-forms";
 
 //@@viewOff:imports
+let styles ={
+   margin:"10% auto auto 70%",
+};
+
 
 const CustomForm = createReactClass({
   mixins: [
@@ -21,6 +25,9 @@ const CustomForm = createReactClass({
     }
   },
 
+
+
+
   render() {
     // console.log(Props, 'props');
     // getFormChildren is method from FormMixin
@@ -32,7 +39,7 @@ const CustomForm = createReactClass({
           <UU5.Forms.Text name="role" label="Bike Description" placeholder="Bike Description" required/>
           <UU5.Forms.Text name="src" label="Bike Image" placeholder="Bike Image"/>
 
-          <UU5.Bricks.Div className="center" style="marginTop:24px">
+          <UU5.Bricks.Div className="center" style={styles}>
             <UU5.Bricks.Button
               content="Add Bike"
               onClick={() => {
@@ -52,19 +59,19 @@ const CustomForm = createReactClass({
 
                 this.reset();
                 alertBus.setAlert({
-                  content: isValid ? "Form is valid." : "Form is not valid.",
+                  content: isValid ? null : "Form is not valid.",
                   colorSchema: isValid ? "success" : "danger"
                 })
               }}
             />
-            <UU5.Bricks.Button
-              content="Clear Alerts"
-              onClick={() => {
-                // method from FormMixin
-                const alertBus = this.getAlertBus();
-                alertBus.clearAlerts();
-              }}
-            />
+            {/*<UU5.Bricks.Button*/}
+              {/*content="Clear Alerts"*/}
+              {/*onClick={() => {*/}
+                {/*// method from FormMixin*/}
+                {/*const alertBus = this.getAlertBus();*/}
+                {/*alertBus.clearAlerts();*/}
+              {/*}}*/}
+            {/*/>*/}
           </UU5.Bricks.Div>
         </UU5.Bricks.Div>
       );

@@ -53,8 +53,7 @@ export const About = UU5.Common.VisualComponent.create({
   _getAuthors(authors) {
     return authors && authors.slice().map(author => {
       author = UU5.Common.Tools.merge({}, author);
-      author.role =
-        author.role && typeof author.role === "object" ? <UU5.Bricks.Lsi lsi={author.role} /> : author.role;
+      author.role = author.role && typeof author.role === "object" ? <UU5.Bricks.Lsi lsi={author.role}/> : author.role;
       // author.src =
       //   author.src || Calls.getCommandUri("getAppAuthorPhoto", { uuIdentity: author.uuIdentity }).toString();
       return author;
@@ -72,7 +71,7 @@ export const About = UU5.Common.VisualComponent.create({
 
     return (
       <UU5.Bricks.Section {...this.getMainPropsToPass()}>
-        <Plus4U5.App.About header={this.getLsiValue("header")} content={this.getLsiItem(about)} />
+        <Plus4U5.App.About header={this.getLsiValue("header")} content={this.getLsiItem(about)}/>
         <Plus4U5.App.Licence
           organisation={this.getLsiItem(licence.organisation)}
           authorities={this.getLsiItem(licence.authorities)}
@@ -88,11 +87,11 @@ export const About = UU5.Common.VisualComponent.create({
         />
         {licence.termsOfUse &&
         <UU5.Bricks.P className={this.getClassName("termsOfUse")}>
-          <UU5.Bricks.Link href={licence.termsOfUse} target="_blank" content={this.getLsiValue("termsOfUse")} />
+          <UU5.Bricks.Link href={licence.termsOfUse} target="_blank" content={this.getLsiValue("termsOfUse")}/>
         </UU5.Bricks.P>}
         <UU5.Bricks.Div className={this.getClassName("logos")}>
-          <UU5.Bricks.Image responsive={false} src="assets/plus4u.svg" />
-          <UU5.Bricks.Image responsive={false} src="assets/unicorn.svg" />
+          <UU5.Bricks.Image responsive={false} src="assets/plus4u.svg"/>
+          <UU5.Bricks.Image responsive={false} src="assets/unicorn.svg"/>
         </UU5.Bricks.Div>
       </UU5.Bricks.Section>
     );
