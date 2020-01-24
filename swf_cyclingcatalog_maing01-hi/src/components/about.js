@@ -20,6 +20,7 @@ export const About = UU5.Common.VisualComponent.create({
   //@@viewOff:mixins
 
   //@@viewOn:statics
+
   statics: {
     tagName: Config.TAG + "About",
     classNames: {
