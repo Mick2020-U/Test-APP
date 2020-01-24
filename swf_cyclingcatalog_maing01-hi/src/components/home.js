@@ -4,11 +4,11 @@ import "uu5g04-bricks";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-bricks";
 
-import Config from "./config/config.js";
+import Config from "../routes/config/config.js";
 import Lsi from "../config/lsi.js";
 import WelcomeRow from "../bricks/welcome-row.js";
 
-import "./home.less";
+import "../styles/home.less";
 //@@viewOff:imports
 
 const Home = UU5.Common.VisualComponent.create({

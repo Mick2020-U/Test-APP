@@ -3,11 +3,11 @@ import * as UU5 from "uu5g04";
 import "uu5g04-bricks";
 import Plus4U5 from "uu_plus4u5g01";
 
-import Config from "./config/config.js";
+import Config from "../routes/config/config.js";
 import Lsi from "../config/lsi.js";
 import WelcomeRow from "../bricks/welcome-row.js";
 
-import "./not-authenticated.less";
+import "../styles/not-authenticated.less";
 //@@viewOff:imports
 
 const NotAuthenticated = UU5.Common.VisualComponent.create({

@@ -3,11 +3,11 @@ import * as UU5 from "uu5g04";
 import "uu5g04-bricks";
 import Plus4U5 from "uu_plus4u5g01";
 
-import Config from "./config/config.js";
+import Config from "../routes/config/config.js";
 import Lsi from "../config/lsi.js";
 import AboutCfg from "../config/about.js";
 
-import "./about.less";
+import "../styles/about.less";
 //@@viewOff:imports
 
 export const About = UU5.Common.VisualComponent.create({

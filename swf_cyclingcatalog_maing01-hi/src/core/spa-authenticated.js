@@ -8,11 +8,11 @@ import Config from "./config/config.js";
 import Lsi from "../config/lsi.js";
 import Left from "./left.js";
 import Bottom from "./bottom.js";
-import About from "../routes/about.js";
-import Home from "../routes/home.js";
-import {Bikes} from "../routes/bikes.js";
+import About from "../components/about.js";
+import Home from "../components/home.js";
+import {Bikes} from "../components/bikes.js";
 import "./spa-authenticated.less";
-import {BikeDetails} from "../routes/bikeDetails";
+import {BikeDetails} from "../components/bikeDetails";
 //@@viewOff:imports
 
 const SpaAuthenticated = UU5.Common.VisualComponent.create({
@@ -65,20 +65,20 @@ const SpaAuthenticated = UU5.Common.VisualComponent.create({
     return (
       <Plus4U5.App.Page
         {...this.getMainPropsToPass()}
-        top={<Plus4U5.App.Top content={this.getLsiComponent("name")} />}
-        bottom={<Bottom />}
+        top={<Plus4U5.App.Top content={this.getLsiComponent("name")}/>}
+        bottom={<Bottom/>}
         type={2}
         displayedLanguages={["cs", "en"]}
-        left={<Left identity={this.props.identity} />}
+        left={<Left identity={this.props.identity}/>}
         leftWidth="!xs-320px !s-320px !m-256px l-256px xl-256px"
       >
         <UU5.Common.Router
           routes={{
-            "": "home",
-            "home": { component: <Home identity={this.props.identity} /> },
-            "about": { component: <About identity={this.props.identity} /> },
-            "bikes": { component: <Bikes identity={this.props.identity} /> },
-            "bike/:id": { component: <BikeDetails identity={this.props.identity}/>, }
+            "": "bikes",
+            "home": {component: <Home identity={this.props.identity}/>},
+            "about": {component: <About identity={this.props.identity}/>},
+            "bikes": {component: <Bikes identity={this.props.identity}/>},
+            "bike/:id": {component: <BikeDetails identity={this.props.identity}/>,}
           }}
           controlled={false}
         />
