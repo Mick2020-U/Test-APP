@@ -58,12 +58,10 @@ export const Bikes = UU5.Common.VisualComponent.create({
   //@@viewOff:overriding
 
   //@@viewOn:private
-  addBike(obj) {
-    this.setState({bikesArr: [...this.state.bikesArr, obj]});
-    // this.setState({
-    //   bikesArr: this.state.bikesArr.concat(obj)
-    // });
-    localStorage.setItem('Bikes', JSON.stringify(this.state.bikesArr))
+  addBike(obj,setStateCallback) {
+    let newArr = [...this.state.bikesArr, obj];
+    this.setState({bikesArr: newArr, setStateCallback});
+    localStorage.setItem('Bikes', JSON.stringify(newArr))
   },
   _getBikes(arr) {
     return arr;
@@ -76,25 +74,26 @@ export const Bikes = UU5.Common.VisualComponent.create({
     const leadingBikes = this._getBikes(this.state.bikesArr);
     return (
       <UU5.Bricks.Div style={{
-        display: "flex",
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
-        background: "#f5f5f5"
+        // display: "flex",
+        // position: "relative",
+        // width: "100%",
+        // height: "100%",
+        // overflow: "hidden",
+        // background: "#f5f5f5"
       }}>
-        <UU5.Bricks.Section {...this.getMainPropsToPass()}>
+        <UU5.Bricks.Section {...this.getMainPropsToPass()} style={{display: "flex",}}>
           <UU5.Tiles.List
+
             tile={<ExampleTile/>}
             data={leadingBikes}
-            tileHeight={300}
-            tileMinWidth={220}
-            tileMaxWidth={400}
-            tileSpacing={8}
+            tileHeight={200}
+            tileMinWidth={100}
+            tileMaxWidth={2500}
+            tileSpacing={4}
             tileElevationHover={1}
             tileBorder
             tileStyle={{borderRadius: 4}}
-            rowSpacing={8}
+            rowSpacing={4}
             tileJustify="space-between"
             scrollElement={window}
           />

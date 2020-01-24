@@ -60,14 +60,14 @@ export const BikeDetails = UU5.Common.VisualComponent.create({
   render() {
     return (
       <UU5.Bricks.Div style={{
-        display: "block",
+        display: "flex",
         position: "relative",
-        width: "100%",
-        height: "100%",
+        // width: "100%",
+        // height: "100%",
         overflow: "hidden",
         background: "#f5f5f5"
       }}>
-        <Plus4U5.Bricks.Image style={{display: "block", margin: "auto", width: "50%", background: "#f5f5f5"}}
+        <Plus4U5.Bricks.Image style={{display: "flex", margin: "auto", width: "50%", background: "#f5f5f5"}}
                               src={this.props.data.src} alt={this.props.data.src}/>
 
         <UU5.Bricks.Div>
