@@ -4,14 +4,15 @@
     "permissionMap": {
       "{asidOwner}": ["AsidOwner"]
     },
-    "useCaseMap": {
-    }
+    "useCaseMap": {}
   },
   "*": {
-    "profileList": ["Authorities", "Executives", "AwidOwner"],
+    "profileList": ["Authorities","Executives","AwidOwner"],
     "useCaseMap": {
       "init": ["AwidOwner"],
-      "defaultUve": ["Public"]
+      "defaultUve": ["Public"],
+      "bike": ["Public"],
+      "joke/create": ["Public"]
     }
   }
 }

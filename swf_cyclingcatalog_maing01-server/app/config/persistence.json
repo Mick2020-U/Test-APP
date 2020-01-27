@@ -6,6 +6,9 @@
       "schemaMap": {
         "cyclingcatalogMain": {
           "realization": "dao/CyclingcatalogMainMongo"
+        },
+        "bikesMain": {
+          "realization": "dao/BikesMainMongo"
         }
       }
     }

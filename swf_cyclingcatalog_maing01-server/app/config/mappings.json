@@ -10,6 +10,16 @@
         "realization": "index.html",
         "httpMethod": "GET",
         "type": "UVE"
+      },
+      "bike": {
+        "realization": "api/controllers/BikesMainController.bike",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "joke/create": {
+        "realization": "api/controllers/JokeController.create",
+        "httpMethod": ["POST"],
+        "type": "CMD"
       }
     }
   }
