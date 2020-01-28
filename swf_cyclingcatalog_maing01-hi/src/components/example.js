@@ -7,7 +7,7 @@ import "uu_plus4u5g01-bricks";
 import "uu_plus4u5g01-app";
 import {BikeDetails} from "./bikeDetails";
 
-const BINARY_URL = "https://uuos9.plus4u.net/uu-bookkitg01-main/78462435-5c73a1fdb9a14b4aaff232962752c9b6/getBinaryData";
+
 
 
 const ExampleTile = UU5.Common.VisualComponent.create({
@@ -52,6 +52,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
 
   //@@viewOn:render
   render() {
+    console.log(this.props.data);
     let mainProps = this.getMainPropsToPass();
     mainProps.style = {...mainProps.style, ...{height: "100%", width: "100%"}};
 

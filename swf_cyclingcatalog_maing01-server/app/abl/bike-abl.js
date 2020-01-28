@@ -49,7 +49,7 @@ class BikeAbl {
       dtoOut = await this.dao.getBikes(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) { // A3
-        throw new Errors.Create.BikeDaoCreateFailed({uuAppErrorMap}, e);
+        console.log(e);
       }
       throw e;
     }

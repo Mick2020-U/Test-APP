@@ -14,7 +14,7 @@
       "getBikes": {
         "realization": "api/controllers/BikeController.getBikes",
         "httpMethod": "GET",
-        "type": "UVE"
+        "type": "CMD"
       },
       "bike/create": {
         "realization": "api/controllers/BikeController.create",

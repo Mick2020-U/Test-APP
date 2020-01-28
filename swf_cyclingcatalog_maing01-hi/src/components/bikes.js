@@ -7,20 +7,31 @@ import Lsi from "../config/lsi.js";
 import ExampleTile from './example';
 import "../styles/bikes.less";
 import CustomForm from "./form";
+import Calls from "../calls";
 
 //@@viewOff:imports
-
-
+// let res = await Calls.getBikes();
+// console.log(res.data.itemList, 'res');
 export const Bikes = UU5.Common.VisualComponent.create({
 //@@viewOn:standardComponentLifeCycle
   async getInitialState() {
     let selectedOption = JSON.parse(localStorage.getItem('Bikes')) || [];
+    let res = await Calls.getBikes();
+    console.log(res.data.itemList, 'res');
     return {
-      bikesArr: selectedOption
+      bikesArr: res.data.itemList
     }
+
   },
+
+  async componentDidMount() {
+    let res = await Calls.getBikes();
+    console.log(res.data.itemList, 'res');
+    this.setState({bikesArr: res.data.itemList});
+  },
+
   componentWillMount() {
-    this.setCalls(Bikes);
+    this.setCalls(Calls);
   },
   //@@viewOn:mixins
   mixins: [
@@ -41,7 +52,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
     },
     lsi: Lsi.bikes,
     calls: {
-      onLoad: "bikes"
+      onLoad: "getBikes"
     }
   },
   //@@viewOff:statics
@@ -62,23 +73,24 @@ export const Bikes = UU5.Common.VisualComponent.create({
   //@@viewOff:interface
 
   //@@viewOn:overriding
+  // getOnLoadData_(props) {
+  //   return {
+  //     code: "Hello"
+  //   }
+  // },
   //@@viewOff:overriding
 
   //@@viewOn:private
 
-  _getBikes(arr) {
-    return arr;
-  },
   addBike(obj, setStateCallback) {
     let newArr = [...this.state.bikesArr, obj];
     this.setState({bikesArr: newArr, setStateCallback});
-    localStorage.setItem('Bikes', JSON.stringify(newArr))
   },
+
   //@@viewOff:private
 
   //@@viewOn:render
   render() {
-    const leadingBikes = this._getBikes(this.state.bikesArr);
     return (
       <UU5.Bricks.Div style={{
         display: "flex",
@@ -91,7 +103,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
         <UU5.Bricks.Section {...this.getMainPropsToPass()}>
           <UU5.Tiles.List
             tile={<ExampleTile/>}
-            data={leadingBikes}
+            data={this.state.bikesArr}
             tileHeight={300}
             tileMinWidth={220}
             tileMaxWidth={400}
