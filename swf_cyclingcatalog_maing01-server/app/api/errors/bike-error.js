@@ -1,9 +1,9 @@
-const UuJokesError = require("./uu-jokes-error");
+const UuBikesError = require("./uu-bikes-error");
 
 const Create = {
-  UC_CODE: `${UuJokesError.ERROR_PREFIX}joke/create`,
+  UC_CODE: `${UuBikesError.ERROR_PREFIX}bike/create`,
 
-  InvalidDtoIn: class extends UuJokesError {
+  InvalidDtoIn: class extends UuBikesError {
     constructor() {
       super(...arguments);
       this.code = `${Create.UC_CODE}invalidDtoIn`;

@@ -11,13 +11,13 @@
         "httpMethod": "GET",
         "type": "UVE"
       },
-      "bike": {
-        "realization": "api/controllers/BikesMainController.bike",
+      "getBikes": {
+        "realization": "api/controllers/BikeController.getBikes",
         "httpMethod": "GET",
-        "type": "CMD"
+        "type": "UVE"
       },
-      "joke/create": {
-        "realization": "api/controllers/JokeController.create",
+      "bike/create": {
+        "realization": "api/controllers/BikeController.create",
         "httpMethod": ["POST"],
         "type": "CMD"
       }

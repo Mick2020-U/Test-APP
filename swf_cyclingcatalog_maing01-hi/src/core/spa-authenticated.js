@@ -18,7 +18,8 @@ import {BikeDetails} from "../components/bikeDetails";
 const SpaAuthenticated = UU5.Common.VisualComponent.create({
   //@@viewOn:mixins
   mixins: [
-    UU5.Common.BaseMixin
+    UU5.Common.BaseMixin,
+    // UU5.Common.RouteMixin
   ],
   //@@viewOff:mixins
 

@@ -7,22 +7,27 @@ import Lsi from "../config/lsi.js";
 import ExampleTile from './example';
 import "../styles/bikes.less";
 import CustomForm from "./form";
+
 //@@viewOff:imports
 
 
 export const Bikes = UU5.Common.VisualComponent.create({
 //@@viewOn:standardComponentLifeCycle
-  getInitialState() {
+  async getInitialState() {
     let selectedOption = JSON.parse(localStorage.getItem('Bikes')) || [];
     return {
       bikesArr: selectedOption
     }
   },
+  componentWillMount() {
+    this.setCalls(Bikes);
+  },
   //@@viewOn:mixins
   mixins: [
     UU5.Common.BaseMixin,
     UU5.Common.LsiMixin,
-    UU5.Common.RouteMixin
+    UU5.Common.RouteMixin,
+    UU5.Common.LoadMixin
   ],
   //@@viewOff:mixins
 
@@ -34,7 +39,10 @@ export const Bikes = UU5.Common.VisualComponent.create({
       logos: Config.CSS + "bikes-logos",
       termsOfUse: Config.CSS + "bikes-terms"
     },
-    lsi: Lsi.bikes
+    lsi: Lsi.bikes,
+    calls: {
+      onLoad: "bikes"
+    }
   },
   //@@viewOff:statics
 

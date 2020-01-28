@@ -1,6 +1,6 @@
 const {UseCaseError} = require("uu_appg01_server").AppServer;
 
-class UuJokesError extends UseCaseError {
+class UuBikesError extends UseCaseError {
 
   static get ERROR_PREFIX() {
     return "uu-jokes-main/";
@@ -16,4 +16,4 @@ class UuJokesError extends UseCaseError {
   }
 }
 
-module.exports = UuJokesError;
+module.exports = UuBikesError;

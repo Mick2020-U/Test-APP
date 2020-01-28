@@ -9,7 +9,11 @@
         },
         "bikesMain": {
           "realization": "dao/BikesMainMongo"
-        }
+        },
+        "bike": {
+        "realization": "dao/BikeMongo",
+        "maxNoi": 1024
+      }
       }
     }
   }

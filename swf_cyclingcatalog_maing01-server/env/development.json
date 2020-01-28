@@ -1,7 +1,7 @@
 {
   "port": 8080,
   "uuSubAppDataStoreMap": {
-    "primary": "mongodb://127.0.0.1:27017/cyclingcatalogMainPrimary"
+    "primary": "mongodb://127.0.0.1:27017/UuBikes"
   },
   "privilegedUserMap": {
     "asidOwner": "14-2710-1"

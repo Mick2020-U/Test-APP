@@ -11,8 +11,8 @@
     "useCaseMap": {
       "init": ["AwidOwner"],
       "defaultUve": ["Public"],
-      "bike": ["Public"],
-      "joke/create": ["Public"]
+      "bikes": ["Public"],
+      "bike/create": ["Public"]
     }
   }
 }
