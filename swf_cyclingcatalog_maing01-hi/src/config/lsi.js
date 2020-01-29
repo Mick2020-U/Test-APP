@@ -17,6 +17,7 @@ const Lsi = {
       cs: "Bikes",
       en: "Bikes"
     }
+    // bikes: "Bikes"
   },
 
   about: {

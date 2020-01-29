@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import "uu5g04-forms";
+import Lsi from "../config/lsi";
 
 //@@viewOff:imports
 
@@ -18,7 +19,8 @@ const CustomForm = createReactClass({
     tagName: "UU5.Example.CustomForm",
     classNames: {
       main: "uu5-example-customform"
-    }
+    },
+    lsi: Lsi.bikes,
   },
 
   render() {
