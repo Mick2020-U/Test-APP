@@ -3,6 +3,7 @@ const BikeAbl = require("../../abl/bike-abl");
 class BikeController {
 
   getBikes(ucEnv) {
+    // console.log("check");
     return BikeAbl.getBikes(ucEnv.getUri().getAwid(), ucEnv.getDtoIn());
   }
 

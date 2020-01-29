@@ -6,6 +6,7 @@ import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-bricks";
 import "uu_plus4u5g01-app";
 import {BikeDetails} from "./bikeDetails";
+import Lsi from "../config/lsi";
 
 
 
@@ -24,7 +25,8 @@ const ExampleTile = UU5.Common.VisualComponent.create({
     tagName: "UU5.Tiles.ExampleTile",
     classNames: {
       main: "uu5-tiles-exampletile"
-    }
+    },
+    lsi: Lsi.bikes,
   },
   //@@viewOff: statics
 
@@ -52,7 +54,6 @@ const ExampleTile = UU5.Common.VisualComponent.create({
 
   //@@viewOn:render
   render() {
-    console.log(this.props.data);
     let mainProps = this.getMainPropsToPass();
     mainProps.style = {...mainProps.style, ...{height: "100%", width: "100%"}};
 

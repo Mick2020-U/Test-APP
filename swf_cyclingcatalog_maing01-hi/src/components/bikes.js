@@ -17,7 +17,6 @@ export const Bikes = UU5.Common.VisualComponent.create({
   async getInitialState() {
     let selectedOption = JSON.parse(localStorage.getItem('Bikes')) || [];
     let res = await Calls.getBikes();
-    console.log(res.data.itemList, 'res');
     return {
       bikesArr: res.data.itemList
     }
@@ -26,7 +25,6 @@ export const Bikes = UU5.Common.VisualComponent.create({
 
   async componentDidMount() {
     let res = await Calls.getBikes();
-    console.log(res.data.itemList, 'res');
     this.setState({bikesArr: res.data.itemList});
   },
 
