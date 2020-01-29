@@ -7,12 +7,13 @@
     "useCaseMap": {}
   },
   "*": {
-    "profileList": ["Authorities","Executives","AwidOwner"],
+    "profileList": ["Authorities","Executives","AwidOwner","Public"],
     "useCaseMap": {
       "init": ["AwidOwner"],
       "defaultUve": ["Public"],
       "getBikes": ["Public"],
-      "bike/create": ["Authorities","Executives","Public"]
+      "bike/create": ["Public"],
+      "bike/delete": ["Public"]
     }
   }
 }

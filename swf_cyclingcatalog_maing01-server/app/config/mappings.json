@@ -18,7 +18,12 @@
       },
       "bike/create": {
         "realization": "api/controllers/BikeController.create",
-        "httpMethod": ["POST"],
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "bike/delete": {
+        "realization": "api/controllers/BikeController.delete",
+        "httpMethod": "GET",
         "type": "CMD"
       }
     }

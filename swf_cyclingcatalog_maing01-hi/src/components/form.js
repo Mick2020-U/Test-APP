@@ -37,7 +37,7 @@ const CustomForm = createReactClass({
           <UU5.Bricks.Div className="center" style="marginTop:24px">
             <UU5.Bricks.Button
               content="Add Bike"
-              onClick={() => {
+              onClick={(event) => {
                 // methods from FormMixin
                 const isValid = this.isValid();
                 const alertBus = this.getAlertBus();

@@ -8,8 +8,12 @@ class BikeMongo extends UuObjectDao {
   async create(bike) {
     return await super.insertOne(bike);
   }
+
   async getBikes() {
     return await super.find({});
+  }
+  async delete(id) {
+    return await super.deleteOne(id);
   }
 }
 

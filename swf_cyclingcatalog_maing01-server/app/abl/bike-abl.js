@@ -17,6 +17,17 @@ class BikeAbl {
     this.dao = DaoFactory.getDao("bike");
   }
 
+  async delete(awid, dtoIn) {
+    try {
+       await this.dao.delete(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) { // A3
+        throw new Errors.Create.BikeDaoCreateFailed({uuAppErrorMap}, e);
+      }
+      throw e;
+    }
+  }
+
   async create(awid, dtoIn) {
     // hds 1, 1.1
     let validationResult = this.validator.validate("bikeCreateDtoInType", dtoIn);
@@ -41,6 +52,7 @@ class BikeAbl {
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
   }
+
 
   async getBikes(awid, dtoIn){
     dtoIn.awid = awid;

@@ -32,6 +32,25 @@ let Calls = {
       });
     });
   },
+
+
+  postBike(dtoIn) {
+    let commandUri = Calls.getCommandUri("bike/create");
+
+    return new Promise((resolve, reject) => {
+      Calls.call("post", commandUri, {
+        data: dtoIn,
+        done: dtoOut =>
+          resolve({
+            bike: dtoOut.bike,
+            pageInfo: dtoOut.pageInfo
+          }),
+        fail: response => reject(response)
+      });
+    });
+  },
+
+
   /*
   For calling command on specific server, in case of developing client site with already deployed
   server in uuCloud etc. You can specify url of this application (or part of url) in development
