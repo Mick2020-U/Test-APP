@@ -9,12 +9,12 @@ let Calls = {
   APP_BASE_URI: location.protocol + "//" + location.host + UU5.Environment.getAppBasePath(),
 
   call(method, url, dtoIn, clientOptions) {
-  return Plus4U5.Common.Calls.call(method, url, dtoIn, clientOptions);
+    return Plus4U5.Common.Calls.call(method, url, dtoIn, clientOptions);
   },
 
   loadDemoContent(dtoIn) {
-  let commandUri = Calls.getCommandUri("loadDemoContent");
-  return Calls.call("get", commandUri, dtoIn);
+    let commandUri = Calls.getCommandUri("loadDemoContent");
+    return Calls.call("get", commandUri, dtoIn);
   },
 
   getBikes(dtoIn) {
@@ -33,18 +33,20 @@ let Calls = {
     });
   },
 
+  deleteBike(id) {
+    let commandUri = Calls.getCommandUri("bike/delete");
+    return new Promise(() => {
+      Calls.call("get", commandUri, {id});
+    });
+  },
 
   postBike(dtoIn) {
     let commandUri = Calls.getCommandUri("bike/create");
-
+    //
     return new Promise((resolve, reject) => {
       Calls.call("post", commandUri, {
         data: dtoIn,
-        done: dtoOut =>
-          resolve({
-            bike: dtoOut.bike,
-            pageInfo: dtoOut.pageInfo
-          }),
+        done: response => resolve(response),
         fail: response => reject(response)
       });
     });

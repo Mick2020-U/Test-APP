@@ -24,7 +24,6 @@ const CustomForm = createReactClass({
   },
 
   render() {
-    // console.log(Props, 'props');
     // getFormChildren is method from FormMixin
     return this.getFormChildren(() => {
       return (
@@ -37,7 +36,7 @@ const CustomForm = createReactClass({
           <UU5.Bricks.Div className="center" style="marginTop:24px">
             <UU5.Bricks.Button
               content="Add Bike"
-              onClick={(event) => {
+              onClick={() => {
                 // methods from FormMixin
                 const isValid = this.isValid();
                 const alertBus = this.getAlertBus();
@@ -54,7 +53,7 @@ const CustomForm = createReactClass({
 
                 this.reset();
                 alertBus.setAlert({
-                  content: isValid ? "Form is valid." : "Form is not valid.",
+                  content: isValid ? null : "Form is not valid.",
                   colorSchema: isValid ? "success" : "danger"
                 })
               }}

@@ -63,9 +63,6 @@ const Bike = createReactClass({
           <UU5.BlockLayout.Row weight="primary" ellipses>
             {this.props.data.name}
           </UU5.BlockLayout.Row>
-          {/*<UU5.BlockLayout.Row>*/}
-          {/*  {this.props.data.text}*/}
-          {/*</UU5.BlockLayout.Row>*/}
         </UU5.BlockLayout.Block>
       </UU5.BlockLayout.Tile>
     );

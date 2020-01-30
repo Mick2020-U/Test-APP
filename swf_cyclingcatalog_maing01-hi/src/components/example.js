@@ -9,8 +9,6 @@ import {BikeDetails} from "./bikeDetails";
 import Lsi from "../config/lsi";
 
 
-
-
 const ExampleTile = UU5.Common.VisualComponent.create({
   //@@viewOn:mixins
   mixins: [
@@ -69,6 +67,14 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           right: "2%",
           top: "2%"
         }}/>
+        <UU5.Bricks.Button content="Delete" onClick={() => {
+          this.props.delete(this.props.data.id)
+        }
+        } style={{
+          position: "absolute",
+          right: "20%",
+          top: "2%"
+        }}> Delete</UU5.Bricks.Button>
         <UU5.Bricks.P>{this.props.data.name}</UU5.Bricks.P>
         <UU5.Bricks.Lsi style={{position: "absolute"}} lsi={this.props.data.role}/>
         <Plus4U5.Bricks.Image style={{display: "block", margin: "auto", width: "50%", background: "#f5f5f5"}}

@@ -8,6 +8,7 @@ import "../styles/bikes.less";
 import CustomForm from "./form";
 import Calls from "../calls";
 import {BikeDetails} from "./bikeDetails";
+import ExampleTile from "./example";
 
 //@@viewOff:imports
 
@@ -102,7 +103,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
     return (
       <UU5.Bricks.Div>
         <UU5.Bricks.Div style={{
-          display: "flex",
+          display: "block",
           position: "relative",
           justifyContent: "center",
           width: "100%",
@@ -113,8 +114,9 @@ export const Bikes = UU5.Common.VisualComponent.create({
           <UU5.Common.ListDataManager style={{width: "100%", margin: "auto"}}
                                       onLoad={Calls.getBikes}
                                       onCreate={Calls.postBike}
+                                      onDelete={Calls.deleteBike}
           >
-            {({viewState, errorState, errorData, data, handleLoad,handleCreate}) => {
+            {({viewState, errorState, errorData, data, handleLoad,handleCreate, handleDelete}) => {
               if (errorState) {
                 // error
                 return "Error";
@@ -122,39 +124,22 @@ export const Bikes = UU5.Common.VisualComponent.create({
                 // ready
                 return (
                   <UU5.Bricks.Div style={{
-                    "display": "block",
+                    "display": "flex",
                   }}>
-                    <UU5.Bricks.Button
-                      disabled={!data}
-                      onClick={() => {
-                        handleLoad().then(
-                          data => console.log("load success", data),
-                          data => console.log("load fail", data)
-                        )
-                      }}
-                    >
-                      Load
-                    </UU5.Bricks.Button>
-
-                    <UU5.Bricks.Button
-                      disabled={!data}
-                      onClick={() => {
-                        handleLoad().then(
-                          data => console.log("load success", data),
-                          data => console.log("load fail", data)
-                        )
-                      }}
-                    >
-                      Load
-                    </UU5.Bricks.Button>
-
-                    <UU5.Bricks.Row display="flex">
-                      {data.map(item => (
-                        <UU5.Bricks.Column colWidth="m-6 l-4 xl-3" key={item.id}>
-                          <BikeDetails data={item}/>
-                        </UU5.Bricks.Column>
-                      ))}
-                    </UU5.Bricks.Row>
+                    <UU5.Tiles.List
+                      tile={<ExampleTile delete={handleDelete}/>}
+                      data={data}
+                      tileHeight={200}
+                      tileMinWidth={220}
+                      tileMaxWidth={40000}
+                      tileSpacing={8}
+                      tileElevationHover={1}
+                      tileBorder
+                      tileStyle={{borderRadius: 4}}
+                      rowSpacing={8}
+                      tileJustify="space-between"
+                      scrollElement={window}
+                    />
                     <UU5.Bricks.Section style={{display: "flex", margin: "auto"}}>
                       <CustomForm addBike={handleCreate}/>
                     </UU5.Bricks.Section>
