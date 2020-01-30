@@ -1,4 +1,4 @@
-//@@viewOn:imports
+
 import * as UU5 from "uu5g04";
 import "uu5g04-bricks";
 import "uu5tilesg01";
@@ -7,51 +7,19 @@ import Lsi from "../config/lsi.js";
 import "../styles/bikes.less";
 import CustomForm from "./form";
 import Calls from "../calls";
-import {BikeDetails} from "./bikeDetails";
 import ExampleTile from "./example";
-
-//@@viewOff:imports
-
-
-// const Calls = {
-//   load(dtoInData) {
-//     return Client.get(
-//       "https://uuappg01-eu-w-1.plus4u.net/uu-jokes-maing01/4ef6a7b01b5942ecbfb925b249af987f/joke/list",
-//       dtoInData
-//     );
-//   }
-// };
 
 
 export const Bikes = UU5.Common.VisualComponent.create({
-//@@viewOn:standardComponentLifeCycle
-//   async getInitialState() {
-//     let selectedOption = JSON.parse(localStorage.getItem('Bikes')) || [];
-//     let res = await Calls.getBikes();
-//     return {
-//       bikesArr: res.data.itemList
-//     }
-//
-//   },
-
-  // async componentDidMount() {
-  //   let res = await Calls.getBikes();
-  //   this.setState({bikesArr: res.data.itemList});
-  // },
-
   componentWillMount() {
     this.setCalls(Calls);
   },
-  //@@viewOn:mixins
   mixins: [
     UU5.Common.BaseMixin,
     UU5.Common.LsiMixin,
     UU5.Common.RouteMixin,
     UU5.Common.LoadMixin
   ],
-  //@@viewOff:mixins
-
-  //@@viewOn:statics
   statics: {
     tagName: Config.TAG + "Bikes",
     classNames: {
@@ -64,41 +32,16 @@ export const Bikes = UU5.Common.VisualComponent.create({
       onLoad: "getBikes"
     }
   },
-  //@@viewOff:statics
 
-  //@@viewOn:propTypes
-  propTypes: {
-    identity: UU5.PropTypes.shape()
-  },
-  //@@viewOff:propTypes
-
-  //@@viewOn:getDefaultProps
-  //@@viewOff:getDefaultProps
-
-  //@@viewOn:reactLifeCycle
-  //@@viewOff:reactLifeCycle
-
-  //@@viewOn:interface
-  //@@viewOff:interface
-
-  //@@viewOn:overriding
-  // getOnLoadData_(props) {
-  //   return {
-  //     code: "Hello"
-  //   }
-  // },
-  //@@viewOff:overriding
-
-  //@@viewOn:private
-
-  // addBike(obj, setStateCallback) {
-  //   let newArr = [...this.state.bikesArr, obj];
-  //   this.setState({bikesArr: newArr, setStateCallback});
-  // },
-
-  //@@viewOff:private
-
-  //@@viewOn:render
+// propTypes: {
+  //   data: PropTypes.shape({
+  //     id: PropTypes.string,
+  //     name: PropTypes.string,
+  //     text: PropTypes.string
+  //   }),
+  //   // onUpdate: PropTypes.func,
+  //   // onDelete: PropTypes.func
+  // }
   render() {
     return (
       <UU5.Bricks.Div>
@@ -116,7 +59,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
                                       onCreate={Calls.postBike}
                                       onDelete={Calls.deleteBike}
           >
-            {({viewState, errorState, errorData, data, handleLoad,handleCreate, handleDelete}) => {
+            {({ errorState, data,handleCreate, handleDelete}) => {
               if (errorState) {
                 // error
                 return "Error";
@@ -130,14 +73,14 @@ export const Bikes = UU5.Common.VisualComponent.create({
                       tile={<ExampleTile delete={handleDelete}/>}
                       data={data}
                       tileHeight={200}
-                      tileMinWidth={220}
-                      tileMaxWidth={40000}
-                      tileSpacing={8}
+                      tileMinWidth={200}
+                      tileMaxWidth={4000}
+                      tileSpacing={2}
                       tileElevationHover={1}
                       tileBorder
                       tileStyle={{borderRadius: 4}}
                       rowSpacing={8}
-                      tileJustify="space-between"
+                      tileJustify="space-around"
                       scrollElement={window}
                     />
                     <UU5.Bricks.Section style={{display: "flex", margin: "auto"}}>
@@ -162,4 +105,3 @@ export const Bikes = UU5.Common.VisualComponent.create({
   //@@viewOff:render
 });
 
-// export default Bikes;

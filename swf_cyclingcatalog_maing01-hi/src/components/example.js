@@ -10,15 +10,12 @@ import Lsi from "../config/lsi";
 
 
 const ExampleTile = UU5.Common.VisualComponent.create({
-  //@@viewOn:mixins
   mixins: [
     UU5.Common.BaseMixin,
     UU5.Common.ElementaryMixin,
     UU5.Common.RouteMixin
   ],
-  //@@viewOff:mixins
 
-  //@@viewOn:statics
   statics: {
     tagName: "UU5.Tiles.ExampleTile",
     classNames: {
@@ -26,31 +23,9 @@ const ExampleTile = UU5.Common.VisualComponent.create({
     },
     lsi: Lsi.bikes,
   },
-  //@@viewOff: statics
-
-  //@@viewOn:propTypes
-  //@@viewOff:propTypes
-
-  //@@viewOn:getDefaultProps
-  //@@viewOff:getDefaultProps
-
-  //@@viewOn:reactLifeCycle
-  //@@viewOff:reactLifeCycle
-
-  //@@viewOn:interface
-  //@@viewOff:interface
-
-  //@@viewOn:overriding
-  //@@viewOff:overriding
-
-  //@@viewOn:private
   _goRoute(id) {
     UU5.Environment.setRoute(this.props.route, {bike: id});
   },
-  //@@viewOff:private
-
-
-  //@@viewOn:render
   render() {
     let mainProps = this.getMainPropsToPass();
     mainProps.style = {...mainProps.style, ...{height: "100%", width: "100%"}};
@@ -82,7 +57,6 @@ const ExampleTile = UU5.Common.VisualComponent.create({
       </UU5.Bricks.Div>
     )
   }
-  //@@viewOff:render
 });
 
 export default ExampleTile;

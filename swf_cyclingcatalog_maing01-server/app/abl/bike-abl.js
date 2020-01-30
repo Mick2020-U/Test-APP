@@ -31,7 +31,6 @@ class BikeAbl {
   async create(awid, dtoIn) {
     // hds 1, 1.1
     let validationResult = this.validator.validate("bikeCreateDtoInType", dtoIn);
-
     // hds 1.2, 1.3 // A1, A2
     let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
       WARNINGS.createUnsupportedKeys.code, Errors.Create.InvalidDtoIn);

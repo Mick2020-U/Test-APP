@@ -1,4 +1,4 @@
-//@@viewOn:imports
+
 import React from "react";
 import createReactClass from "create-react-class";
 import ReactDOM from "react-dom";
@@ -7,7 +7,7 @@ import "uu5g04-bricks";
 import "uu5g04-forms";
 import Lsi from "../config/lsi";
 
-//@@viewOff:imports
+
 
 const CustomForm = createReactClass({
   mixins: [
@@ -41,7 +41,8 @@ const CustomForm = createReactClass({
                 const isValid = this.isValid();
                 const alertBus = this.getAlertBus();
                 const res = this.getValues();
-                this.props.addBike({
+
+                isValid && this.props.addBike({
                   name: res.name,
                   id: (+new Date).toString(16),
                   uuIdentity: "4-4-1",

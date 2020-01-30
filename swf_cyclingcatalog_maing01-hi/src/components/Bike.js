@@ -1,9 +1,7 @@
 import * as UU5 from "uu5g04";
 import "uu5g04-bricks";
 import "uu5tilesg01";
-import Plus4U5 from "uu_plus4u5g01";
 import React from "react";
-import PropTypes from "prop-types";
 import createReactClass from "create-react-class";
 import "uu5g04-bricks";
 import "uu5g04-forms";
@@ -11,16 +9,6 @@ import "uu5g04-forms";
 
 const Bike = createReactClass({
   mixins: [UU5.Common.BaseMixin, UU5.Common.ElementaryMixin],
-
-  // propTypes: {
-  //   data: PropTypes.shape({
-  //     id: PropTypes.string,
-  //     name: PropTypes.string,
-  //     text: PropTypes.string
-  //   }),
-  //   // onUpdate: PropTypes.func,
-  //   // onDelete: PropTypes.func
-  // },
 
   getDefaultProps() {
     return {
