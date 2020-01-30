@@ -1,4 +1,3 @@
-
 import React from "react";
 import createReactClass from "create-react-class";
 import ReactDOM from "react-dom";
@@ -7,20 +6,14 @@ import "uu5g04-bricks";
 import "uu5g04-forms";
 import Lsi from "../config/lsi";
 
-
-
 const CustomForm = createReactClass({
-  mixins: [
-    UU5.Common.BaseMixin,
-    UU5.Common.ElementaryMixin,
-    UU5.Forms.FormMixin
-  ],
+  mixins: [UU5.Common.BaseMixin, UU5.Common.ElementaryMixin, UU5.Forms.FormMixin],
   statics: {
     tagName: "UU5.Example.CustomForm",
     classNames: {
       main: "uu5-example-customform"
     },
-    lsi: Lsi.bikes,
+    lsi: Lsi.bikes
   },
 
   render() {
@@ -29,9 +22,9 @@ const CustomForm = createReactClass({
       return (
         // parent will be repaired in 1.8.1
         <UU5.Bricks.Div parent={this}>
-          <UU5.Forms.Text name="name" label="Bike Name" placeholder="Bike Name" required/>
-          <UU5.Forms.Text name="role" label="Bike Description" placeholder="Bike Description" required/>
-          <UU5.Forms.Text name="src" label="Bike Image" placeholder="Bike Image"/>
+          <UU5.Forms.Text name="name" label="Bike Name" placeholder="Bike Name" required />
+          <UU5.Forms.Text name="role" label="Bike Description" placeholder="Bike Description" required />
+          <UU5.Forms.Text name="src" label="Bike Image" placeholder="Bike Image" />
 
           <UU5.Bricks.Div className="center" style="marginTop:24px">
             <UU5.Bricks.Button
@@ -42,21 +35,24 @@ const CustomForm = createReactClass({
                 const alertBus = this.getAlertBus();
                 const res = this.getValues();
 
-                isValid && this.props.addBike({
-                  name: res.name,
-                  id: (+new Date).toString(16),
-                  uuIdentity: "4-4-1",
-                  src: res.src ? res.src : 'https://www.genesisglobalschool.edu.in/wp-content/uploads/2016/09/noimage.jpg',
-                  role: {
-                    en: res.role,
-                  }
-                });
+                isValid &&
+                  this.props.addBike({
+                    name: res.name,
+                    id: (+new Date()).toString(16),
+                    uuIdentity: "4-4-1",
+                    src: res.src
+                      ? res.src
+                      : "https://www.genesisglobalschool.edu.in/wp-content/uploads/2016/09/noimage.jpg",
+                    role: {
+                      en: res.role
+                    }
+                  });
 
                 this.reset();
                 alertBus.setAlert({
                   content: isValid ? null : "Form is not valid.",
                   colorSchema: isValid ? "success" : "danger"
-                })
+                });
               }}
             />
             <UU5.Bricks.Button

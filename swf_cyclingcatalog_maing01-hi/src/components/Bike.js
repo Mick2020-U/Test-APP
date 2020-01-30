@@ -6,7 +6,6 @@ import createReactClass from "create-react-class";
 import "uu5g04-bricks";
 import "uu5g04-forms";
 
-
 const Bike = createReactClass({
   mixins: [UU5.Common.BaseMixin, UU5.Common.ElementaryMixin],
 

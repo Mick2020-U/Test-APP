@@ -17,8 +17,8 @@ let Calls = {
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  getBikes(dtoIn) {
-    let commandUri = Calls.getCommandUri("getBikes");
+  bikeList(dtoIn) {
+    let commandUri = Calls.getCommandUri("bike/list");
 
     return new Promise((resolve, reject) => {
       Calls.call("get", commandUri, {
@@ -36,7 +36,7 @@ let Calls = {
   deleteBike(id) {
     let commandUri = Calls.getCommandUri("bike/delete");
     return new Promise(() => {
-      Calls.call("get", commandUri, {id});
+      Calls.call("get", commandUri, { id });
     });
   },
 
@@ -51,7 +51,6 @@ let Calls = {
       });
     });
   },
-
 
   /*
   For calling command on specific server, in case of developing client site with already deployed
@@ -70,11 +69,11 @@ let Calls = {
   }
   */
   getCommandUri(aUseCase) {
-// useCase <=> e.g. "getSomething" or "sys/getSomething"
-// add useCase to the application base URI
+    // useCase <=> e.g. "getSomething" or "sys/getSomething"
+    // add useCase to the application base URI
     let targetUriStr = Calls.APP_BASE_URI + aUseCase.replace(/^\/+/, "");
 
-// override tid / awid if it's present in environment (use also its gateway in such case)
+    // override tid / awid if it's present in environment (use also its gateway in such case)
     if (process.env.NODE_ENV !== "production") {
       let env = UU5.Environment;
       if (env.tid || env.awid || env.vendor || env.app) {

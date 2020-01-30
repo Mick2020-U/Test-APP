@@ -11,7 +11,7 @@
     "useCaseMap": {
       "init": ["AwidOwner"],
       "defaultUve": ["Public"],
-      "getBikes": ["Public"],
+      "bike/list": ["Public"],
       "bike/create": ["Public"],
       "bike/delete": ["Public"]
     }

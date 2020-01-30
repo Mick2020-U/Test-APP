@@ -22,9 +22,7 @@ const tabHome = () => Tools.openNewTab({ code: "home" });
 
 export const Left = UU5.Common.VisualComponent.create({
   //@@viewOn:mixins
-  mixins: [
-    UU5.Common.BaseMixin
-  ],
+  mixins: [UU5.Common.BaseMixin],
   //@@viewOff:mixins
 
   //@@viewOn:statics
@@ -64,9 +62,7 @@ export const Left = UU5.Common.VisualComponent.create({
 
   //@@viewOn:private
   _getItems() {
-    return [
-      { code: "bikes", content: this.getLsiComponent("bikes") },
-    ]
+    return [{ code: "bikes", content: this.getLsiComponent("bikes") }];
   },
 
   _onItemClick(item, e) {
@@ -85,21 +81,19 @@ export const Left = UU5.Common.VisualComponent.create({
         </UU5.Bricks.Div>
 
         <Plus4U5.App.Menu
-          ref_={ref => UU5.Environment.App.menuRef = ref}
+          ref_={ref => (UU5.Environment.App.menuRef = ref)}
           className={this.getClassName("menu")}
           items={this._getItems()}
           onClick={this._onItemClick}
           onWheelClick={Tools.openNewTab}
           onCtrlClick={Tools.openNewTab}
         />
-{/*<LeftLink route="welcome">*/}
-          {/*{this.getLsiComponent("welcome")}*/}
+        {/*<LeftLink route="welcome">*/}
+        {/*{this.getLsiComponent("welcome")}*/}
         {/*</LeftLink>*/}
-        <LeftLink route="about">
-          {this.getLsiComponent("about")}
-        </LeftLink>
+        <LeftLink route="about">{this.getLsiComponent("about")}</LeftLink>
         {/*<LeftLink route="bikes">*/}
-          {/*{this.getLsiComponent("bikes")}*/}
+        {/*{this.getLsiComponent("bikes")}*/}
         {/*</LeftLink>*/}
       </UU5.Bricks.Div>
     );
