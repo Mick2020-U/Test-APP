@@ -9,6 +9,14 @@ class BikeMongo extends UuObjectDao {
     return await super.insertOne(bike);
   }
 
+  async update(uuObject) {
+    let filter = {
+      awid: uuObject.awid,
+      id: uuObject.id
+    };
+    return await super.findOneAndUpdate(filter, uuObject, "NONE");
+  }
+
   async bikeList() {
     return await super.find({});
   }

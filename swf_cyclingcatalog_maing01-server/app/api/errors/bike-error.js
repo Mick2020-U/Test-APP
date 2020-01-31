@@ -16,7 +16,13 @@ const Delete = {
   UC_CODE: `${UuBikesError.ERROR_PREFIX}bike/delete/`
 };
 
+const Update = {
+  UC_CODE: `${UuBikesError.ERROR_PREFIX}update/`,
+
+};
+
 module.exports = {
+  Update,
   Delete,
   Create
 };

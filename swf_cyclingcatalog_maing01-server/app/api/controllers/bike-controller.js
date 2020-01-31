@@ -1,6 +1,10 @@
 const BikeAbl = require("../../abl/bike-abl");
 
 class BikeController {
+
+  update(ucEnv) {
+    return BikeAbl.update(ucEnv.getUri().getAwid(), ucEnv.getDtoIn());
+  }
   delete(ucEnv) {
     return BikeAbl.delete(ucEnv.getUri().getAwid(), ucEnv.getDtoIn());
   }
@@ -10,7 +14,7 @@ class BikeController {
   }
 
   create(ucEnv) {
-    return BikeAbl.create(ucEnv.getUri().getAwid(), ucEnv.getDtoIn());
+    return BikeAbl.create(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
   }
 }
 

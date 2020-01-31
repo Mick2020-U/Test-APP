@@ -40,6 +40,17 @@ let Calls = {
     });
   },
 
+  updateBike(dtoIn) {
+    let commandUri = Calls.getCommandUri("bike/update");
+    return new Promise((resolve, reject) => {
+      Calls.call("post", commandUri, {
+        data: dtoIn,
+        done: response => resolve(response),
+        fail: response => reject(response)
+      });
+    });
+  },
+
   postBike(dtoIn) {
     let commandUri = Calls.getCommandUri("bike/create");
     //

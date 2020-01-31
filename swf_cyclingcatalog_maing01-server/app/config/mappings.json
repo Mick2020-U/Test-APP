@@ -25,6 +25,11 @@
         "realization": "api/controllers/BikeController.delete",
         "httpMethod": "GET",
         "type": "CMD"
+      },
+      "bike/update": {
+        "realization": "api/controllers/BikeController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }

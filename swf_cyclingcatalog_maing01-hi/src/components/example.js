@@ -55,6 +55,28 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           {" "}
           Delete
         </UU5.Bricks.Button>
+
+
+        <UU5.Bricks.Button
+          content="Update"
+          onClick={() => {
+            this.props.handleBike(this.props.data);
+          }}
+          style={{
+            position: "absolute",
+            right: "40%",
+            top: "2%"
+          }}
+        >
+          {" "}
+          Update
+        </UU5.Bricks.Button>
+
+
+
+
+
+
         <UU5.Bricks.P>{this.props.data.name}</UU5.Bricks.P>
         <UU5.Bricks.Lsi style={{ position: "absolute" }} lsi={this.props.data.role} />
         <Plus4U5.Bricks.Image

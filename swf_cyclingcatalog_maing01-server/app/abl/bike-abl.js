@@ -1,9 +1,12 @@
-const { Validator } = require("uu_appg01_server").Validation;
-const { DaoFactory, ObjectStoreError } = require("uu_appg01_server").ObjectStore;
-const { ValidationHelper } = require("uu_appg01_server").AppServer;
-
+const {Validator} = require("uu_appg01_server").Validation;
+const {DaoFactory, ObjectStoreError} = require("uu_appg01_server").ObjectStore;
+const {ValidationHelper} = require("uu_appg01_server").AppServer;
 const path = require("path");
 const Errors = require("../api/errors/bike-error.js");
+const {LoggerFactory} = require("uu_appg01_server").Logging;
+
+const logger = LoggerFactory.get("UuBikes.Abls.BikeAbl");
+
 
 const WARNINGS = {
   createUnsupportedKeys: {
@@ -17,19 +20,32 @@ class BikeAbl {
     this.dao = DaoFactory.getDao("bike");
   }
 
+  async update(awid, dtoIn) {
+    try {
+      await this.dao.update(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        // A3
+        throw new Errors.Create.BikeDaoCreateFailed({uuAppErrorMap}, e);
+      }
+      throw e;
+    }
+  }
+
   async delete(awid, dtoIn) {
     try {
       await this.dao.delete(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         // A3
-        throw new Errors.Create.BikeDaoCreateFailed({ uuAppErrorMap }, e);
+        throw new Errors.Create.BikeDaoCreateFailed({uuAppErrorMap}, e);
       }
       throw e;
     }
+
   }
 
-  async create(awid, dtoIn) {
+  async create(awid, dtoIn, session, authorizationResult) {
     // hds 1, 1.1
     let validationResult = this.validator.validate("bikeCreateDtoInType", dtoIn);
     // hds 1.2, 1.3 // A1, A2
@@ -41,6 +57,16 @@ class BikeAbl {
     );
 
     // hds 2
+    // dtoIn.visibility = authorizationResult.getAuthorizedProfiles().includes('3688-6948-1');
+
+    if (logger.isDebugLoggable()) {
+      logger.debug("Creating bike with parameters: " + JSON.stringify(dtoIn));
+    }
+
+    // hds 3
+    dtoIn.uuIdentity = session.getIdentity().getUuIdentity();
+    dtoIn.uuIdentityName = session.getIdentity().getName();
+
     dtoIn.awid = awid;
     let dtoOut;
     try {
@@ -48,7 +74,7 @@ class BikeAbl {
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         // A3
-        throw new Errors.Create.BikeDaoCreateFailed({ uuAppErrorMap }, e);
+        throw new Errors.Create.BikeDaoCreateFailed({uuAppErrorMap}, e);
       }
       throw e;
     }

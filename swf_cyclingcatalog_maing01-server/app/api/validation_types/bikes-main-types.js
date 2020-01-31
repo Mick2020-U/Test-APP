@@ -1,7 +1,7 @@
 const bikeCreateDtoInType = shape({
-  name: uu5String(255).isRequired(),
+  name: string(255).isRequired(),
   role: shape({
-    en: uu5String(255)
+    en: string(255).isRequired()
   }),
-  src: uu5String(4000)
+  src: string(4000).isRequired()
 });
