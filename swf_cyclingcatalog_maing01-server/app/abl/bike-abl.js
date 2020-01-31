@@ -21,8 +21,9 @@ class BikeAbl {
   }
 
   async update(awid, dtoIn) {
+    let dtoOut;
     try {
-      await this.dao.update(dtoIn);
+      dtoOut =  await this.dao.update(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         // A3
@@ -30,6 +31,7 @@ class BikeAbl {
       }
       throw e;
     }
+    return dtoOut;
   }
 
   async delete(awid, dtoIn) {
@@ -45,7 +47,7 @@ class BikeAbl {
 
   }
 
-  async create(awid, dtoIn, session, authorizationResult) {
+  async create(awid, dtoIn, session) {
     // hds 1, 1.1
     let validationResult = this.validator.validate("bikeCreateDtoInType", dtoIn);
     // hds 1.2, 1.3 // A1, A2

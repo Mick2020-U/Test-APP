@@ -10,23 +10,40 @@ import Calls from "../calls";
 import ExampleTile from "./example";
 
 export const Bikes = UU5.Common.VisualComponent.create({
-  getInitialState() {
-    return {
+ async getInitialState() {
+   return {
+      bikesArr: [],
+      pessimistic: false,
+      error: false,
       show: false,
       makeUpdate: false,
       currentBike: {}
     }
   },
+
+  async componentDidMount() {
+    let res = await Calls.bikeList();
+    console.log(res.itemList, 'res');
+    this.setState({bikesArr: res.itemList});
+  },
   componentWillMount() {
     this.setCalls(Calls);
   },
 
-  setForm(state, setStateCallback) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.bikesArr !== this.state.bikesArr) {
+      console.log('pokemons state has changed.')
+    }
+  },
+
+    setForm(state, setStateCallback) {
     this.setState({show: !state}, setStateCallback);
   },
 
   updateForm(state, setStateCallback) {
-    this.setState({makeUpdate: !state}, setStateCallback);
+    this.setState({
+      makeUpdate: !state,
+      show: false}, setStateCallback);
   },
 
   handleBike(state, setStateCallback) {
@@ -35,6 +52,20 @@ export const Bikes = UU5.Common.VisualComponent.create({
       currentBike: state
     }, setStateCallback);
   },
+
+
+  addNewBike (value, setStateCallback) {
+    console.log(value,'value');
+    let bikes = [...this.state.bikesArr];
+    let newBikes = bikes.map((el)=> el.id === value.id?{...el, ...value}: el);
+    this.setState({
+      bikesArr: newBikes,
+    }, setStateCallback);
+    console.log(this.state.bikesArr, 'state');
+  },
+
+
+
 
   mixins: [UU5.Common.BaseMixin, UU5.Common.LsiMixin, UU5.Common.RouteMixin, UU5.Common.LoadMixin],
   statics: {
@@ -62,7 +93,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
     onDelete: PropTypes.func
   },
   render() {
-
+let currBike = this.state.currentBike;
     return (
       <UU5.Bricks.Div>
         <UU5.Bricks.Div
@@ -78,12 +109,13 @@ export const Bikes = UU5.Common.VisualComponent.create({
         >
           <UU5.Common.ListDataManager
             style={{width: "100%", margin: "auto"}}
-            onLoad={Calls.bikeList}
+            onLoad={(Calls.bikeList)}
+            onReload={Calls.bikeList}
             onCreate={Calls.postBike}
             onDelete={Calls.deleteBike}
             onUpdate={Calls.updateBike}
           >
-            {({errorState, data, handleCreate, handleDelete, handleUpdate}) => {
+            {({errorState, data, handleCreate, handleLoad, handleDelete, handleReload, handleUpdate}) => {
               if (errorState) {
                 // error
                 return "Error";
@@ -96,8 +128,9 @@ export const Bikes = UU5.Common.VisualComponent.create({
                         delete={handleDelete}
                         update={handleUpdate}
                         handleBike={this.handleBike}
+                        reload={handleReload}
                       />}
-                      data={data}
+                      data={this.state.bikesArr}
                       tileHeight={300}
                       tileMinWidth={220}
                       tileMaxWidth={400}
@@ -120,19 +153,33 @@ export const Bikes = UU5.Common.VisualComponent.create({
                     {this.state.show && !this.state.makeUpdate ? <UU5.Bricks.Section
                       style={{display: "flex", justifyContent: "center"}}>
                       <CustomForm addBike={handleCreate}
-                                  func={this.setForm}
+                                  setForm={this.setForm}
                                   show={this.state.show}/>
                     </UU5.Bricks.Section> : null}
 
 
-                    {this.state.makeUpdate ? <UU5.Bricks.Section
+                    {/*{this.state.makeUpdate ? <UU5.Bricks.Section*/}
+                    {/*  style={{display: "flex", justifyContent: "center"}}>*/}
+                    {/*  <CustomForm update={handleUpdate}*/}
+                    {/*              reload={handleReload}*/}
+                    {/*              // makeUpdate={this.state.makeUpdate}*/}
+                    {/*              currentBike={this.state.currentBike}*/}
+                    {/*              updateForm={this.updateForm}*/}
+                    {/*              // show={this.state.show}*/}
+                    {/*  />*/}
+                    {/*</UU5.Bricks.Section> : null}*/}
+                    <UU5.Bricks.Section
                       style={{display: "flex", justifyContent: "center"}}>
                       <CustomForm update={handleUpdate}
-                                  makeUpdate={this.state.makeUpdate}
-                                  currentBike={this.state.currentBike}
+                                  reload={handleReload}
+                        makeUpdate={this.state.makeUpdate}
+                                  currentBike={currBike}
+                                  addBike={this.addNewBike}
+                                  handleBike={this.handleBike}
                                   updateForm={this.updateForm}
-                                  show={this.state.show}/>
-                    </UU5.Bricks.Section> : null}
+                        // show={this.state.show}
+                      />
+                    </UU5.Bricks.Section>
 
                   </UU5.Bricks.Resize>
                 );

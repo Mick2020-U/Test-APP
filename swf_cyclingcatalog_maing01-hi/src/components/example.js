@@ -5,7 +5,7 @@ import "uu5tilesg01";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-bricks";
 import "uu_plus4u5g01-app";
-import { BikeDetails } from "./bikeDetails";
+import {BikeDetails} from "./bikeDetails";
 import Lsi from "../config/lsi";
 
 const ExampleTile = UU5.Common.VisualComponent.create({
@@ -19,11 +19,11 @@ const ExampleTile = UU5.Common.VisualComponent.create({
     lsi: Lsi.bikes
   },
   _goRoute(id) {
-    UU5.Environment.setRoute(this.props.route, { bike: id });
+    UU5.Environment.setRoute(this.props.route, {bike: id});
   },
   render() {
     let mainProps = this.getMainPropsToPass();
-    mainProps.style = { ...mainProps.style, ...{ height: "100%", width: "100%" } };
+    mainProps.style = {...mainProps.style, ...{height: "100%", width: "100%"}};
 
     return (
       <UU5.Bricks.Div {...mainProps}>
@@ -31,8 +31,8 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           content="More"
           onClick={() => {
             UU5.Environment.setRoute({
-              component: <BikeDetails data={this.props} />,
-              url: { useCase: "bike", parameters: { id: this.props.data.id } }
+              component: <BikeDetails data={this.props}/>,
+              url: {useCase: "bike", parameters: {id: this.props.data.id}}
             });
           }}
           style={{
@@ -61,6 +61,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           content="Update"
           onClick={() => {
             this.props.handleBike(this.props.data);
+            // this.props.reload();
           }}
           style={{
             position: "absolute",
@@ -68,19 +69,14 @@ const ExampleTile = UU5.Common.VisualComponent.create({
             top: "2%"
           }}
         >
-          {" "}
           Update
         </UU5.Bricks.Button>
 
 
-
-
-
-
         <UU5.Bricks.P>{this.props.data.name}</UU5.Bricks.P>
-        <UU5.Bricks.Lsi style={{ position: "absolute" }} lsi={this.props.data.role} />
+        <UU5.Bricks.Lsi style={{position: "absolute"}} lsi={this.props.data.role}/>
         <Plus4U5.Bricks.Image
-          style={{ display: "block", margin: "auto", width: "50%", background: "#f5f5f5" }}
+          style={{display: "block", margin: "auto", width: "50%", background: "#f5f5f5"}}
           src={this.props.data.src}
           alt={this.props.data.src}
         />
