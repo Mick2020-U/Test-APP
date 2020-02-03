@@ -31,7 +31,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           content="More"
           onClick={() => {
             UU5.Environment.setRoute({
-              component: <BikeDetails data={this.props} />,
+              component: <BikeDetails data={this.props}/>,
               url: { useCase: "bike", parameters: { id: this.props.data.id } }
             });
           }}
@@ -67,18 +67,11 @@ const ExampleTile = UU5.Common.VisualComponent.create({
             right: "40%",
             top: "2%"
           }}
-        >
-          {" "}
-          Update
-        </UU5.Bricks.Button>
-
-
-
-
+        >Update</UU5.Bricks.Button>
 
 
         <UU5.Bricks.P>{this.props.data.name}</UU5.Bricks.P>
-        <UU5.Bricks.Lsi style={{ position: "absolute" }} lsi={this.props.data.role} />
+        <UU5.Bricks.Lsi style={{ position: "absolute" }} lsi={this.props.data.role}/>
         <Plus4U5.Bricks.Image
           style={{ display: "block", margin: "auto", width: "50%", background: "#f5f5f5" }}
           src={this.props.data.src}

@@ -17,6 +17,7 @@ const CustomForm = createReactClass({
 
   render() {
     let update = this.props.makeUpdate;
+    // let update = true;
     // getFormChildren is method from FormMixin
     return this.getFormChildren(() => {
       return (
@@ -33,48 +34,28 @@ const CustomForm = createReactClass({
             {update ?
               <UU5.Bricks.Button
                 content="Update Bike"
-                onClick={(event) => {
-                  console.log(this.props.currentBike);
-                  // methods from FormMixin
-                  const isValid = this.isValid();
-                  const alertBus = this.getAlertBus();
-                  const res = this.getValues();
-                  console.log(res, 'res');
-                  // isValid && this.props.update({
-                  //   name: res.name,
-                  //   id: (+new Date()).toString(16),
-                  //   uuIdentity: "4-4-1",
-                  //   src: res.src
-                  //     ? res.src
-                  //     : "https://www.genesisglobalschool.edu.in/wp-content/uploads/2016/09/noimage.jpg",
-                  //   role: {
-                  //     en: res.role
-                  //   }
-                  // });
-                  // this.reset();
-                  // alertBus.setAlert({
-                  //   content: isValid ? null : "Form is not valid.",
-                  //   colorSchema: isValid ? "success" : "danger"
-                  // });
-                }}
-              />
-              : <UU5.Bricks.Button
-                content="Add Bike"
                 onClick={() => {
+                  // this.props.reload();
+                  // console.log(this.props.currentBike);
                   // methods from FormMixin
                   const isValid = this.isValid();
                   const alertBus = this.getAlertBus();
                   const res = this.getValues();
-                  isValid && !update && this.props.addBike({
+                  // console.log(res, 'res');
+                  isValid && this.props.update({
+                    awid: this.props.currentBike.awid,
                     name: res.name,
-                    id: (+new Date()).toString(16),
-                    uuIdentity: "4-4-1",
+                    id: this.props.currentBike.id,
                     src: res.src
                       ? res.src
                       : "https://www.genesisglobalschool.edu.in/wp-content/uploads/2016/09/noimage.jpg",
                     role: {
                       en: res.role
                     }
+                  }).then(this.props.reload()).then(
+                    this.props.updateForm(this.props.makeUpdate)
+                  ).catch((err) => {
+                    return err;
                   });
                   this.reset();
                   alertBus.setAlert({
@@ -82,14 +63,16 @@ const CustomForm = createReactClass({
                     colorSchema: isValid ? "success" : "danger"
                   });
                 }}
-              />}
+              />
+              :    <UU5.Bricks.Button/>
+            }
 
 
             <UU5.Bricks.Button
               content="Close Button"
               onClick={() => {
-                this.props.func ?
-                this.props.func(this.props.show):
+                // this.props.setForm ?
+                // this.props.setForm(this.props.show):
                 this.props.updateForm(this.props.makeUpdate);
                 // this.props.makeUpdate();
                 // method from FormMixin

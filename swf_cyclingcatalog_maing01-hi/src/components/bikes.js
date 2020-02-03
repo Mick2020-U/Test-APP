@@ -21,12 +21,12 @@ export const Bikes = UU5.Common.VisualComponent.create({
     this.setCalls(Calls);
   },
 
-  setForm(state, setStateCallback) {
-    this.setState({show: !state}, setStateCallback);
-  },
+  // setForm(state, setStateCallback) {
+  //   this.setState({ show: !state }, setStateCallback);
+  // },
 
   updateForm(state, setStateCallback) {
-    this.setState({makeUpdate: !state}, setStateCallback);
+    this.setState({ makeUpdate: !state }, setStateCallback);
   },
 
   handleBike(state, setStateCallback) {
@@ -77,13 +77,14 @@ export const Bikes = UU5.Common.VisualComponent.create({
           }}
         >
           <UU5.Common.ListDataManager
-            style={{width: "100%", margin: "auto"}}
+            style={{ width: "100%", margin: "auto" }}
             onLoad={Calls.bikeList}
             onCreate={Calls.postBike}
             onDelete={Calls.deleteBike}
             onUpdate={Calls.updateBike}
+            onReload={Calls.bikeList}
           >
-            {({errorState, data, handleCreate, handleDelete, handleUpdate}) => {
+            {({ errorState, data, handleCreate, handleDelete, handleUpdate, handleLoad, handleReload }) => {
               if (errorState) {
                 // error
                 return "Error";
@@ -96,6 +97,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
                         delete={handleDelete}
                         update={handleUpdate}
                         handleBike={this.handleBike}
+                        handleReload={handleReload}
                       />}
                       data={data}
                       tileHeight={300}
@@ -104,36 +106,31 @@ export const Bikes = UU5.Common.VisualComponent.create({
                       tileSpacing={8}
                       tileElevationHover={1}
                       tileBorder
-                      tileStyle={{borderRadius: 4}}
+                      tileStyle={{ borderRadius: 4 }}
                       rowSpacing={8}
                       tileJustify="space-between"
                       scrollElement={window}
                     />
-                    {this.state.makeUpdate ? null : <UU5.Bricks.Button
-                      disabled={!data}
-                      colorSchema="success"
-                      onClick={() => this.setForm(this.state.show)}
-                    >{this.state.show ? "Close Modal" : "Open Modal"}
-                    </UU5.Bricks.Button>}
+                    {/*{this.state.makeUpdate ? null : <UU5.Bricks.Button*/}
+                    {/*  disabled={!data}*/}
+                    {/*  colorSchema="success"*/}
+                    {/*  onClick={() => this.setForm(this.state.show)}*/}
+                    {/*>{this.state.show ? "Close Modal" : "Open Modal"}*/}
+                    {/*</UU5.Bricks.Button>}*/}
 
-
-                    {this.state.show && !this.state.makeUpdate ? <UU5.Bricks.Section
-                      style={{display: "flex", justifyContent: "center"}}>
-                      <CustomForm addBike={handleCreate}
-                                  func={this.setForm}
-                                  show={this.state.show}/>
-                    </UU5.Bricks.Section> : null}
-
-
-                    {this.state.makeUpdate ? <UU5.Bricks.Section
-                      style={{display: "flex", justifyContent: "center"}}>
-                      <CustomForm update={handleUpdate}
-                                  makeUpdate={this.state.makeUpdate}
-                                  currentBike={this.state.currentBike}
-                                  updateForm={this.updateForm}
-                                  show={this.state.show}/>
-                    </UU5.Bricks.Section> : null}
-
+                    {this.state.makeUpdate ?
+                      <UU5.Bricks.Section
+                        style={{ display: "flex", justifyContent: "center" }}>
+                        <CustomForm
+                          makeUpdate = {this.state.makeUpdate}
+                          updateForm = {this.updateForm}
+                          update={handleUpdate}
+                          reload={handleReload}
+                          currentBike={this.state.currentBike}
+                          // handleBike ={this.handleBike}
+                        />
+                      </UU5.Bricks.Section> : null}
+                  {/**/}
                   </UU5.Bricks.Resize>
                 );
               } else {

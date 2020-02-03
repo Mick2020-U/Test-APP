@@ -21,15 +21,17 @@ class BikeAbl {
   }
 
   async update(awid, dtoIn) {
+    let dtoOut;
     try {
-      await this.dao.update(dtoIn);
+      dtoOut = await this.dao.update(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         // A3
-        throw new Errors.Create.BikeDaoCreateFailed({uuAppErrorMap}, e);
+        throw new Errors.Create.BikeDaoCreateFailed(e);
       }
       throw e;
     }
+    return dtoOut;
   }
 
   async delete(awid, dtoIn) {
