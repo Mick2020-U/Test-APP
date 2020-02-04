@@ -22,10 +22,11 @@ const ExampleTile = UU5.Common.VisualComponent.create({
     UU5.Environment.setRoute(this.props.route, { bike: id });
   },
 
-  render() {
-    console.log(this.props.data, 'data in example');
+   render() {
+    console.log(this.props.mainProps, 'data in example');
     let mainProps = this.getMainPropsToPass();
-    mainProps.style = { ...mainProps.style, ...{ height: "100%", width: "100%" } };
+    //  console.log(mainProps, 'mainProps');
+     mainProps.style = { ...mainProps.style, ...{ height: "100%", width: "100%" } };
 
     return (
       <UU5.Bricks.Div {...mainProps}>
@@ -46,7 +47,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
         <UU5.Bricks.Button
           content="&times;"
           onClick={() => {
-            this.props.delete(this.props.data.id).then((res)=> {
+            this.props.delete(this.props.data.id).then((res) => {
               console.log(res, "delete");
               // this.props.handleReload()
               this.props.status(true);
@@ -78,10 +79,10 @@ const ExampleTile = UU5.Common.VisualComponent.create({
         >Update</UU5.Bricks.Button>
 
         <UU5.Bricks.Section key={this.props.data.id}>
-          <UU5.Bricks.P style={{ position: "absolute",bottom:"15%" }} >{this.props.data.name}</UU5.Bricks.P>
-          <UU5.Bricks.Lsi style={{ position: "absolute", bottom:"10%" }} lsi={this.props.data.role}/>
+          <UU5.Bricks.P style={{ position: "absolute", bottom: "15%" }}>{this.props.data.name}</UU5.Bricks.P>
+          <UU5.Bricks.Lsi style={{ position: "absolute", bottom: "10%" }} lsi={this.props.data.role}/>
           <Plus4U5.Bricks.Image
-            style={{ display: "block", margin: "10% auto", background: "#f5f5f5", width:  "70%", maxHeight: "70%"}}
+            style={{ display: "block", margin: "10% auto", background: "#f5f5f5", width: "70%", maxHeight: "70%" }}
             src={this.props.data.src}
             alt={this.props.data.src}
           />

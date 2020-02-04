@@ -21,7 +21,10 @@ export const Bikes = UU5.Common.VisualComponent.create({
   componentWillMount() {
     this.setCalls(Calls);
   },
-
+async componentDidMount() {
+  let response = await Calls.bikeList();
+  this.setState({ bikesArr: response.itemList });
+},
   setForm(state, setStateCallback) {
     this.setState({ show: !state }, setStateCallback);
   },
@@ -63,7 +66,8 @@ export const Bikes = UU5.Common.VisualComponent.create({
     onDelete: PropTypes.func
   },
   render() {
-
+    let mainProps = this.getMainPropsToPass();
+    console.log(mainProps, 'mainProps');
     return (
       <UU5.Bricks.Div>
         <UU5.Bricks.Div
@@ -108,6 +112,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
                         delete={handleDelete}
                         update={handleUpdate}
                         handleLoad={handleLoad}
+                        mainProps={mainProps}
                         // handleReload={handleReload}
                         handleBike={this.handleBike}
                         status={this.updateForm}
