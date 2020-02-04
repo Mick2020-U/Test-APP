@@ -37,18 +37,18 @@ class BikeAbl {
   async delete(awid, dtoIn) {
     let dtoOut;
     try {
-      dtoOut =  await this.dao.delete(dtoIn);
+      dtoOut = await this.dao.delete(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         // A3
-        throw new Errors.Create.BikeDaoCreateFailed({uuAppErrorMap}, e);
+        console.log(e);
+        throw e;
       }
-      throw e;
+      return dtoOut;
     }
-  return dtoOut;
   }
 
-  async create(awid, dtoIn, session, authorizationResult) {
+  async create(awid, dtoIn, session) {
     // hds 1, 1.1
     let validationResult = this.validator.validate("bikeCreateDtoInType", dtoIn);
     // hds 1.2, 1.3 // A1, A2

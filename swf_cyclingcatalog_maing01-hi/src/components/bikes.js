@@ -14,7 +14,8 @@ export const Bikes = UU5.Common.VisualComponent.create({
     return {
       show: false,
       makeUpdate: false,
-      currentBike: {}
+      currentBike: {},
+      bikesArr: []
     }
   },
   componentWillMount() {
