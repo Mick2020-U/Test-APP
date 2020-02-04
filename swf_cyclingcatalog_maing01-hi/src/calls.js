@@ -35,8 +35,13 @@ let Calls = {
 
   deleteBike(id) {
     let commandUri = Calls.getCommandUri("bike/delete");
-    return new Promise(() => {
+    return new Promise((resolve, reject) => {
       Calls.call("get", commandUri, { id });
+      // Calls.call("get", commandUri, {
+      //   data: {id},
+      //   done: response => resolve(response),
+      //   fail: response => reject(response)
+      // });
     });
   },
 

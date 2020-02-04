@@ -21,8 +21,17 @@ const CustomForm = createReactClass({
     // getFormChildren is method from FormMixin
     return this.getFormChildren(() => {
       return (
+
         // parent will be repaired in 1.8.1
         <UU5.Bricks.Div parent={this}>
+          <UU5.Bricks.Button
+            content="Reload"
+            onClick={() => {
+             this.props.reload().then(
+              data => console.log("reload success", data),
+              data => console.log("reload fail", data)
+             )}
+            }/>
           <UU5.Forms.Text name="name" label="Bike Name" placeholder="Bike Name"
                           value={update ? this.props.currentBike.name : null} required/>
           <UU5.Forms.Text name="role" label="Bike Description" placeholder="Bike Description"
@@ -35,24 +44,25 @@ const CustomForm = createReactClass({
               <UU5.Bricks.Button
                 content="Update Bike"
                 onClick={() => {
-                  // this.props.reload();
-                  // console.log(this.props.currentBike);
                   // methods from FormMixin
                   const isValid = this.isValid();
                   const alertBus = this.getAlertBus();
                   const res = this.getValues();
-                  // console.log(res, 'res');
-                  isValid && this.props.update({
+
+                  isValid && this.props.handle({
                     awid: this.props.currentBike.awid,
                     name: res.name,
                     id: this.props.currentBike.id,
                     src: res.src
                       ? res.src
-                      : "https://www.genesisglobalschool.edu.in/wp-content/uploads/2016/09/noimage.jpg",
+                      : "https://ardis-bike.com.ua/content/images/26/ardis-elite-2-bike-mtv-28-87172324086228.jpg",
                     role: {
                       en: res.role
                     }
                   }).then(this.props.reload()).then(
+                    data => console.log("reload success", data),
+                    data => console.log("reload fail", data)
+                  ).then(
                     this.props.updateForm(this.props.makeUpdate)
                   ).catch((err) => {
                     return err;
@@ -64,16 +74,41 @@ const CustomForm = createReactClass({
                   });
                 }}
               />
-              :    <UU5.Bricks.Button/>
+              : <UU5.Bricks.Button
+                content="Add Bike"
+                onClick={() => {
+                  const isValid = this.isValid();
+                  const alertBus = this.getAlertBus();
+                  const res = this.getValues();
+                  isValid && this.props.handle({
+                    name: res.name,
+                    id: (+new Date()).toString(16),
+                    uuIdentity: "4-4-1",
+                    src: res.src
+                      ? res.src
+                      : "https://ardis-bike.com.ua/content/images/26/ardis-elite-2-bike-mtv-28-87172324086228.jpg",
+                    role: {
+                      en: res.role
+                    }
+                  }).then(this.props.reload()).then(
+                    this.props.setForm(this.props.show)
+                  ).catch((err) => {
+                    return err;
+                  });
+                  this.reset();
+                  alertBus.setAlert({
+                    content: isValid ? null : "Form is not valid.",
+                    colorSchema: isValid ? "success" : "danger"
+                  });
+                }}
+              />
             }
-
-
             <UU5.Bricks.Button
               content="Close Button"
               onClick={() => {
-                // this.props.setForm ?
-                // this.props.setForm(this.props.show):
-                this.props.updateForm(this.props.makeUpdate);
+                this.props.setForm ?
+                  this.props.setForm(this.props.show) :
+                  this.props.updateForm(this.props.makeUpdate);
                 // this.props.makeUpdate();
                 // method from FormMixin
                 const alertBus = this.getAlertBus();
@@ -81,6 +116,7 @@ const CustomForm = createReactClass({
               }}
             />
           </UU5.Bricks.Div>
+
         </UU5.Bricks.Div>
       );
     });

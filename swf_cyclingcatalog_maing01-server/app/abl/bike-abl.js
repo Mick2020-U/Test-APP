@@ -35,8 +35,9 @@ class BikeAbl {
   }
 
   async delete(awid, dtoIn) {
+    let dtoOut;
     try {
-      await this.dao.delete(dtoIn);
+      dtoOut =  await this.dao.delete(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         // A3
@@ -44,7 +45,7 @@ class BikeAbl {
       }
       throw e;
     }
-
+  return dtoOut;
   }
 
   async create(awid, dtoIn, session, authorizationResult) {

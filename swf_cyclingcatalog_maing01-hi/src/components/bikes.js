@@ -21,9 +21,9 @@ export const Bikes = UU5.Common.VisualComponent.create({
     this.setCalls(Calls);
   },
 
-  // setForm(state, setStateCallback) {
-  //   this.setState({ show: !state }, setStateCallback);
-  // },
+  setForm(state, setStateCallback) {
+    this.setState({ show: !state }, setStateCallback);
+  },
 
   updateForm(state, setStateCallback) {
     this.setState({ makeUpdate: !state }, setStateCallback);
@@ -92,12 +92,24 @@ export const Bikes = UU5.Common.VisualComponent.create({
                 // ready
                 return (
                   <UU5.Bricks.Resize>
+                    <UU5.Bricks.Button style={{margin: "auto 90%"}}
+                      disabled={!data}
+                      colorSchema="primary"
+                      onClick={() => {
+                        handleReload().then(
+                          data => console.log("reload success", data),
+                          data => console.log("reload fail", data)
+                        )
+                      }}
+                    >Reload</UU5.Bricks.Button>
                     <UU5.Tiles.List
                       tile={<ExampleTile
                         delete={handleDelete}
                         update={handleUpdate}
-                        handleBike={this.handleBike}
+                        handleLoad={handleLoad}
                         handleReload={handleReload}
+                        handleBike={this.handleBike}
+                        status={this.updateForm}
                       />}
                       data={data}
                       tileHeight={300}
@@ -111,26 +123,38 @@ export const Bikes = UU5.Common.VisualComponent.create({
                       tileJustify="space-between"
                       scrollElement={window}
                     />
-                    {/*{this.state.makeUpdate ? null : <UU5.Bricks.Button*/}
-                    {/*  disabled={!data}*/}
-                    {/*  colorSchema="success"*/}
-                    {/*  onClick={() => this.setForm(this.state.show)}*/}
-                    {/*>{this.state.show ? "Close Modal" : "Open Modal"}*/}
-                    {/*</UU5.Bricks.Button>}*/}
+                    {this.state.makeUpdate ? null : <UU5.Bricks.Button
+                      disabled={!data}
+                      colorSchema="success"
+                      onClick={() => this.setForm(this.state.show)}
+                    >{this.state.show ? "Close Modal" : "Open Modal"}
+                    </UU5.Bricks.Button>}
 
                     {this.state.makeUpdate ?
                       <UU5.Bricks.Section
                         style={{ display: "flex", justifyContent: "center" }}>
                         <CustomForm
-                          makeUpdate = {this.state.makeUpdate}
-                          updateForm = {this.updateForm}
-                          update={handleUpdate}
+                          makeUpdate={this.state.makeUpdate}
+                          updateForm={this.updateForm}
+                          handle={handleUpdate}
                           reload={handleReload}
                           currentBike={this.state.currentBike}
-                          // handleBike ={this.handleBike}
+
                         />
-                      </UU5.Bricks.Section> : null}
-                  {/**/}
+                      </UU5.Bricks.Section>
+                      : null}
+
+                    {this.state.show && !this.state.makeUpdate ?
+                      <UU5.Bricks.Section
+                        style={{ display: "flex", justifyContent: "center" }}>
+                        <CustomForm
+                          handle={handleCreate}
+                          show={this.state.show}
+                          setForm={this.setForm}
+                          reload={handleReload}
+                        />
+                      </UU5.Bricks.Section>
+                      : null}
                   </UU5.Bricks.Resize>
                 );
               } else {

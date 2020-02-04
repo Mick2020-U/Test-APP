@@ -37,24 +37,30 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           }}
           style={{
             position: "absolute",
-            right: "2%",
+            right: "80%",
             top: "2%"
           }}
         />
         <UU5.Bricks.Button
-          content="Delete"
+          content="&times;"
           onClick={() => {
-            this.props.delete(this.props.data.id);
+            this.props.delete(this.props.data.id).then((res)=> {
+              console.log(res, "delete");
+              this.props.handleReload()
+              this.props.status(true);
+            }).then(
+              data => console.log("reload success", data),
+              data => console.log("reload fail", data)
+            );
+
           }}
           style={{
             position: "absolute",
-            right: "20%",
+            background: "red",
+            right: "2%",
             top: "2%"
           }}
-        >
-          {" "}
-          Delete
-        </UU5.Bricks.Button>
+        >Delete</UU5.Bricks.Button>
 
 
         <UU5.Bricks.Button
@@ -64,19 +70,21 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           }}
           style={{
             position: "absolute",
-            right: "40%",
-            top: "2%"
+            right: "35%",
+            top: "90%"
           }}
         >Update</UU5.Bricks.Button>
 
+        <UU5.Bricks.Section>
+          <UU5.Bricks.P style={{ position: "absolute",bottom:"15%" }} >{this.props.data.name}</UU5.Bricks.P>
+          <UU5.Bricks.Lsi style={{ position: "absolute", bottom:"10%" }} lsi={this.props.data.role}/>
+          <Plus4U5.Bricks.Image
+            style={{ display: "block", margin: "10% auto", background: "#f5f5f5", width:  "70%", maxHeight: "70%"}}
+            src={this.props.data.src}
+            alt={this.props.data.src}
+          />
+        </UU5.Bricks.Section>
 
-        <UU5.Bricks.P>{this.props.data.name}</UU5.Bricks.P>
-        <UU5.Bricks.Lsi style={{ position: "absolute" }} lsi={this.props.data.role}/>
-        <Plus4U5.Bricks.Image
-          style={{ display: "block", margin: "auto", width: "50%", background: "#f5f5f5" }}
-          src={this.props.data.src}
-          alt={this.props.data.src}
-        />
       </UU5.Bricks.Div>
     );
   }
