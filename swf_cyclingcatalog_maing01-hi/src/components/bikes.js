@@ -108,7 +108,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
                         delete={handleDelete}
                         update={handleUpdate}
                         handleLoad={handleLoad}
-                        handleReload={handleReload}
+                        // handleReload={handleReload}
                         handleBike={this.handleBike}
                         status={this.updateForm}
                       />}

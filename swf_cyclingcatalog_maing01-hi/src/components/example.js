@@ -21,7 +21,9 @@ const ExampleTile = UU5.Common.VisualComponent.create({
   _goRoute(id) {
     UU5.Environment.setRoute(this.props.route, { bike: id });
   },
+
   render() {
+    console.log(this.props.data, 'data in example');
     let mainProps = this.getMainPropsToPass();
     mainProps.style = { ...mainProps.style, ...{ height: "100%", width: "100%" } };
 
@@ -46,7 +48,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           onClick={() => {
             this.props.delete(this.props.data.id).then((res)=> {
               console.log(res, "delete");
-              this.props.handleReload()
+              // this.props.handleReload()
               this.props.status(true);
             }).then(
               data => console.log("reload success", data),
