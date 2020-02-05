@@ -67,7 +67,6 @@ async componentDidMount() {
   },
   render() {
     let mainProps = this.getMainPropsToPass();
-    console.log(mainProps, 'mainProps');
     return (
       <UU5.Bricks.Div>
         <UU5.Bricks.Div

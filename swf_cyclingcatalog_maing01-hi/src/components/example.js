@@ -23,7 +23,6 @@ const ExampleTile = UU5.Common.VisualComponent.create({
   },
 
    render() {
-    console.log(this.props.mainProps, 'data in example');
     let mainProps = this.getMainPropsToPass();
     //  console.log(mainProps, 'mainProps');
      mainProps.style = { ...mainProps.style, ...{ height: "100%", width: "100%" } };

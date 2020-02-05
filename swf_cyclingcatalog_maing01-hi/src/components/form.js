@@ -24,14 +24,6 @@ const CustomForm = createReactClass({
 
         // parent will be repaired in 1.8.1
         <UU5.Bricks.Div parent={this}>
-          <UU5.Bricks.Button
-            content="Reload"
-            onClick={() => {
-             this.props.reload().then(
-              data => console.log("reload success", data),
-              data => console.log("reload fail", data)
-             )}
-            }/>
           <UU5.Forms.Text name="name" label="Bike Name" placeholder="Bike Name"
                           value={update ? this.props.currentBike.name : null} required/>
           <UU5.Forms.Text name="role" label="Bike Description" placeholder="Bike Description"
@@ -50,7 +42,7 @@ const CustomForm = createReactClass({
                   const res = this.getValues();
 
                   isValid && this.props.handle({
-                    awid: this.props.currentBike.awid,
+                    // awid: this.props.currentBike.awid,
                     name: res.name,
                     id: this.props.currentBike.id,
                     src: res.src
@@ -60,8 +52,8 @@ const CustomForm = createReactClass({
                       en: res.role
                     }
                   }).then(this.props.reload()).then(
-                    data => console.log("reload success", data),
-                    data => console.log("reload fail", data)
+                    () => console.log("reload success"),
+                    () => console.log("reload fail")
                   ).then(
                     this.props.updateForm(this.props.makeUpdate)
                   ).catch((err) => {
@@ -90,7 +82,7 @@ const CustomForm = createReactClass({
                     role: {
                       en: res.role
                     }
-                  }).then(this.props.reload()).then(
+                  }).then(
                     this.props.setForm(this.props.show)
                   ).catch((err) => {
                     return err;

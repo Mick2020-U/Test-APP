@@ -20,7 +20,27 @@ class BikeAbl {
     this.dao = DaoFactory.getDao("bike");
   }
 
-  async update(awid, dtoIn) {
+  async update(awid, dtoIn, session) {
+    let id = dtoIn.id;
+    let validationResult = this.validator.validate("bikeCreateDtoInType", dtoIn);
+    // hds 1.2, 1.3 // A1, A2
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.createUnsupportedKeys.code,
+      Errors.Create.InvalidDtoIn
+    );
+    // hds 2
+    // dtoIn.visibility = authorizationResult.getAuthorizedProfiles().includes('3688-6948-1');
+
+    if (logger.isDebugLoggable()) {
+      logger.debug("Updating bike with parameters: " + JSON.stringify(dtoIn));
+    }
+    // hds 3
+    dtoIn.uuIdentity = session.getIdentity().getUuIdentity();
+    dtoIn.uuIdentityName = session.getIdentity().getName();
+    dtoIn.id = id;
+    dtoIn.awid = awid;
     let dtoOut;
     try {
       dtoOut = await this.dao.update(dtoIn);
