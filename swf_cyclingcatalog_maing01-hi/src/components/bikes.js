@@ -119,7 +119,8 @@ export const Bikes = UU5.Common.VisualComponent.create({
                         mainProps={mainProps}
                         // handleReload={handleReload}
                         handleBike={this.handleBike}
-                        status={this.updateForm}
+                        handle={this.setValue}
+                        makeUpdate={this.state.makeUpdate}
                         key={UU5.Common.Tools.generateUUID(8)}
                       />}
                       data={data}
@@ -164,6 +165,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
                           show={this.state.show}
                           setForm={this.setValue}
                           reload={handleReload}
+                          // makeUpdate={this.state.makeUpdate}
                         />
                       </UU5.Bricks.Section>
                       : null}

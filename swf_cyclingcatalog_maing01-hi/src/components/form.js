@@ -101,9 +101,9 @@ const CustomForm = createReactClass({
             <UU5.Bricks.Button
               content={<UU5.Bricks.Lsi lsi={Lsi.buttons.closeModal} /> }
               onClick={() => {
-                this.props.setForm ?
-                  this.props.setForm(this.props.show) :
-                  this.props.updateForm(this.props.makeUpdate);
+                this.props.show ?
+                  this.props.setForm("show", this.props.show)
+                  : this.props.updateForm("makeUpdate", this.props.makeUpdate);
                 // this.props.makeUpdate();
                 // method from FormMixin
                 const alertBus = this.getAlertBus();

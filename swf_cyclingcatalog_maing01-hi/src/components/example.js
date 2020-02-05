@@ -29,16 +29,8 @@ const ExampleTile = UU5.Common.VisualComponent.create({
 
     return (
       <UU5.Bricks.Div {...mainProps}>
-        <UU5.Bricks.Lsi>
-          {/*{{Lsi.buttons.more}}*/}
-        </UU5.Bricks.Lsi>
-
-
-        {/*<UU5.Bricks.Lsi lsi={Lsi}>*/}
-
         <UU5.Bricks.Button
           content={<UU5.Bricks.Lsi lsi={Lsi.buttons.more} /> }
-          // content={Lsi.buttons.more.cs}
           onClick={() => {
             UU5.Environment.setRoute({
               component: <BikeDetails data={this.props}/>,
@@ -58,7 +50,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
             this.props.delete(this.props.data.id).then((res) => {
               console.log(res, "delete");
               // this.props.handleReload()
-              this.props.status(true);
+              this.props.handle("makeUpdate",this.props.makeUpdate);
             }).then(
               data => console.log("reload success", data),
               data => console.log("reload fail", data)
@@ -67,7 +59,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           }}
           style={{
             position: "absolute",
-            background: "red",
+            background: "#f08080",
             right: "2%",
             top: "2%"
           }}
