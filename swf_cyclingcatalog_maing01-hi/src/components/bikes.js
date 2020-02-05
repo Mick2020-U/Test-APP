@@ -116,6 +116,7 @@ async componentDidMount() {
                         // handleReload={handleReload}
                         handleBike={this.handleBike}
                         status={this.updateForm}
+                        key={UU5.Common.Tools.generateUUID(8)}
                       />}
                       data={data}
                       tileHeight={300}
@@ -128,6 +129,7 @@ async componentDidMount() {
                       rowSpacing={8}
                       tileJustify="space-between"
                       scrollElement={window}
+                      key={UU5.Common.Tools.generateUUID(8)}
                     />
                     {this.state.makeUpdate ? null : <UU5.Bricks.Button
                       disabled={!data}

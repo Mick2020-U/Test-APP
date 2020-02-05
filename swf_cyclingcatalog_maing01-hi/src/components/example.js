@@ -78,7 +78,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
           }}
         >Update</UU5.Bricks.Button>
 
-        <UU5.Bricks.Section key={this.props.data.id}>
+        <UU5.Bricks.Section key={UU5.Common.Tools.generateUUID(8)}>
           <UU5.Bricks.P style={{ position: "absolute", bottom: "15%" }}>{this.props.data.name}</UU5.Bricks.P>
           <UU5.Bricks.Lsi style={{ position: "absolute", bottom: "10%" }} lsi={this.props.data.role}/>
           <Plus4U5.Bricks.Image
