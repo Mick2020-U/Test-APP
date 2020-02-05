@@ -21,18 +21,19 @@ export const Bikes = UU5.Common.VisualComponent.create({
   componentWillMount() {
     this.setCalls(Calls);
   },
-async componentDidMount() {
-  let response = await Calls.bikeList();
-  this.setState({ bikesArr: response.itemList });
-},
-  setForm(state, setStateCallback) {
-    this.setState({ show: !state }, setStateCallback);
+  async componentDidMount() {
+    let response = await Calls.bikeList();
+    this.setState({ bikesArr: response.itemList });
   },
-
-  updateForm(state, setStateCallback) {
-    this.setState({ makeUpdate: !state }, setStateCallback);
+//@@viewOn:interface
+  setValue(state, value, setStateCallback) {
+    this.setState(() => {
+      return {
+        [state]: !value
+      }
+    }, setStateCallback);
   },
-
+//@@viewOff:interface
   handleBike(state, setStateCallback) {
     this.setState({
       makeUpdate: true,
@@ -96,15 +97,15 @@ async componentDidMount() {
                 // ready
                 return (
                   <UU5.Bricks.Resize>
-                    <UU5.Bricks.Button style={{margin: "auto 90%"}}
-                      disabled={!data}
-                      colorSchema="primary"
-                      onClick={() => {
-                        handleReload().then(
-                          data => console.log("reload success", data),
-                          data => console.log("reload fail", data)
-                        )
-                      }}
+                    <UU5.Bricks.Button style={{ margin: "auto 90%" }}
+                                       disabled={!data}
+                                       colorSchema="primary"
+                                       onClick={() => {
+                                         handleReload().then(
+                                           data => console.log("reload success", data),
+                                           data => console.log("reload fail", data)
+                                         )
+                                       }}
                     >Reload</UU5.Bricks.Button>
                     <UU5.Tiles.List
                       tile={<ExampleTile
@@ -133,7 +134,7 @@ async componentDidMount() {
                     {this.state.makeUpdate ? null : <UU5.Bricks.Button
                       disabled={!data}
                       colorSchema="success"
-                      onClick={() => this.setForm(this.state.show)}
+                      onClick={() => this.setValue('show', this.state.show)}
                     >{this.state.show ? "Close Modal" : "Open Modal"}
                     </UU5.Bricks.Button>}
 
@@ -142,7 +143,7 @@ async componentDidMount() {
                         style={{ display: "flex", justifyContent: "center" }}>
                         <CustomForm
                           makeUpdate={this.state.makeUpdate}
-                          updateForm={this.updateForm}
+                          updateForm={this.setValue}
                           handle={handleUpdate}
                           reload={handleReload}
                           currentBike={this.state.currentBike}
@@ -157,7 +158,7 @@ async componentDidMount() {
                         <CustomForm
                           handle={handleCreate}
                           show={this.state.show}
-                          setForm={this.setForm}
+                          setForm={this.setValue}
                           reload={handleReload}
                         />
                       </UU5.Bricks.Section>

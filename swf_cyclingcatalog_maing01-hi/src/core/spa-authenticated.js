@@ -81,7 +81,7 @@ const SpaAuthenticated = UU5.Common.VisualComponent.create({
             bikes: { component: <Bikes identity={this.props.identity} /> },
             "bike/:id": { component: <BikeDetails identity={this.props.identity} /> }
           }}
-          controlled={false}
+          controlled={true}
         />
       </Plus4U5.App.Page>
     );

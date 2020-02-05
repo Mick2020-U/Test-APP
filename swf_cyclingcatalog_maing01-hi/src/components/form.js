@@ -14,7 +14,10 @@ const CustomForm = createReactClass({
     },
     lsi: Lsi.bikes
   },
-
+  // componentWillReceiveProps(prevProps, nextProps) {
+  //   console.log(prevProps, 'prevProps');
+  //   console.log(nextProps, 'nextProps');
+  // },
   render() {
     let update = this.props.makeUpdate;
     // let update = true;
@@ -55,7 +58,8 @@ const CustomForm = createReactClass({
                     () => console.log("reload success"),
                     () => console.log("reload fail")
                   ).then(
-                    this.props.updateForm(this.props.makeUpdate)
+                    this.props.updateForm("makeUpdate", this.props.makeUpdate),
+                    this.forceUpdate()
                   ).catch((err) => {
                     return err;
                   });
@@ -83,7 +87,7 @@ const CustomForm = createReactClass({
                       en: res.role
                     }
                   }).then(
-                    this.props.setForm(this.props.show)
+                    this.props.setForm("show", this.props.show)
                   ).catch((err) => {
                     return err;
                   });
