@@ -9,12 +9,12 @@ import { BikeDetails } from "./bikeDetails";
 import Lsi from "../config/lsi";
 
 const ExampleTile = UU5.Common.VisualComponent.create({
-  mixins: [UU5.Common.BaseMixin, UU5.Common.ElementaryMixin, UU5.Common.RouteMixin],
+  mixins: [UU5.Common.BaseMixin, UU5.Common.ElementaryMixin, UU5.Common.RouteMixin, UU5.Common.LsiMixin],
 
   statics: {
     tagName: "UU5.Tiles.ExampleTile",
     classNames: {
-      main: "uu5-tiles-exampletile"
+      main: "uu5-tiles-exampleTile"
     },
     lsi: Lsi.bikes
   },
@@ -29,8 +29,16 @@ const ExampleTile = UU5.Common.VisualComponent.create({
 
     return (
       <UU5.Bricks.Div {...mainProps}>
+        <UU5.Bricks.Lsi>
+          {/*{{Lsi.buttons.more}}*/}
+        </UU5.Bricks.Lsi>
+
+
+        {/*<UU5.Bricks.Lsi lsi={Lsi}>*/}
+
         <UU5.Bricks.Button
-          content="More"
+          content={<UU5.Bricks.Lsi lsi={Lsi.buttons.more} /> }
+          // content={Lsi.buttons.more.cs}
           onClick={() => {
             UU5.Environment.setRoute({
               component: <BikeDetails data={this.props}/>,
@@ -43,6 +51,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
             top: "2%"
           }}
         />
+        {/*</UU5.Bricks.Lsi>*/}
         <UU5.Bricks.Button
           content="&times;"
           onClick={() => {
@@ -66,7 +75,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
 
 
         <UU5.Bricks.Button
-          content="Update"
+          content={<UU5.Bricks.Lsi lsi={Lsi.buttons.update} /> }
           onClick={() => {
             this.props.handleBike(this.props.data);
           }}
@@ -75,7 +84,7 @@ const ExampleTile = UU5.Common.VisualComponent.create({
             right: "35%",
             top: "90%"
           }}
-        >Update</UU5.Bricks.Button>
+        ><UU5.Bricks.Lsi lsi={Lsi.buttons.update} /></UU5.Bricks.Button>
 
         <UU5.Bricks.Section key={UU5.Common.Tools.generateUUID(8)}>
           <UU5.Bricks.P style={{ position: "absolute", bottom: "15%" }}>{this.props.data.name}</UU5.Bricks.P>

@@ -41,7 +41,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
     }, setStateCallback);
   },
 
-  mixins: [UU5.Common.BaseMixin, UU5.Common.LsiMixin, UU5.Common.RouteMixin, UU5.Common.LoadMixin],
+  mixins: [UU5.Common.BaseMixin, UU5.Common.LsiMixin, UU5.Common.RouteMixin, UU5.Common.LoadMixin, UU5.Common.ContentMixin],
   statics: {
     tagName: Config.TAG + "Bikes",
     classNames: {
@@ -81,6 +81,10 @@ export const Bikes = UU5.Common.VisualComponent.create({
             background: "#f5f5f5"
           }}
         >
+          <UU5.Bricks.Lsi>
+            <UU5.Bricks.Lsi.Item language="cs">Ahoj</UU5.Bricks.Lsi.Item>
+            <UU5.Bricks.Lsi.Item language="en">Hello</UU5.Bricks.Lsi.Item>
+          </UU5.Bricks.Lsi>
           <UU5.Common.ListDataManager
             style={{ width: "100%", margin: "auto" }}
             onLoad={Calls.bikeList}
@@ -106,7 +110,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
                                            data => console.log("reload fail", data)
                                          )
                                        }}
-                    >Reload</UU5.Bricks.Button>
+                    > {<UU5.Bricks.Lsi lsi={Lsi.buttons.update} /> } </UU5.Bricks.Button>
                     <UU5.Tiles.List
                       tile={<ExampleTile
                         delete={handleDelete}
@@ -135,7 +139,7 @@ export const Bikes = UU5.Common.VisualComponent.create({
                       disabled={!data}
                       colorSchema="success"
                       onClick={() => this.setValue('show', this.state.show)}
-                    >{this.state.show ? "Close Modal" : "Open Modal"}
+                    >{this.state.show ? <UU5.Bricks.Lsi lsi={Lsi.buttons.closeModal} />  : <UU5.Bricks.Lsi lsi={Lsi.buttons.openModal} />}
                     </UU5.Bricks.Button>}
 
                     {this.state.makeUpdate ?

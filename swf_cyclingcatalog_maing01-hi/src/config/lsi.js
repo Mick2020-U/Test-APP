@@ -3,7 +3,44 @@ const Lsi = {
     cs: "Aplikace swfCyclingcatalog",
     en: "Application swfCyclingcatalog"
   },
-
+  buttons: {
+    more: {
+      cs: "Більше",
+      en: "More"
+    },
+    update: {
+      cs: "Оновити",
+      en: "Update"
+    },
+    openModal: {
+      cs: "Додати",
+      en: "Add Bike"
+    },
+    closeModal: {
+      cs: "Закрити",
+      en: "Close"
+    },
+    name: {
+      cs: "Ім'я",
+      en: "Name"
+    },
+    description: {
+      cs: "Опис",
+      en: "Description"
+    },
+    image: {
+      cs: "Зображення",
+      en: "Image Src"
+    },
+    addItem: {
+      cs: "Добавити",
+      en: "Add"
+    },
+    close: {
+      cs: "Закрити",
+      en: "Close"
+    }
+  },
   leftLinks: {
     home: {
       cs: "Vítejte",

@@ -27,17 +27,17 @@ const CustomForm = createReactClass({
 
         // parent will be repaired in 1.8.1
         <UU5.Bricks.Div parent={this}>
-          <UU5.Forms.Text name="name" label="Bike Name" placeholder="Bike Name"
+          <UU5.Forms.Text name="name" label={<UU5.Bricks.Lsi lsi={Lsi.buttons.name} /> } placeholder="Bike Name"
                           value={update ? this.props.currentBike.name : null} required/>
-          <UU5.Forms.Text name="role" label="Bike Description" placeholder="Bike Description"
+          <UU5.Forms.Text name="role" label={<UU5.Bricks.Lsi lsi={Lsi.buttons.description} /> } placeholder="Bike Description"
                           value={update ? this.props.currentBike.role.en : null} required/>
-          <UU5.Forms.Text name="src" label="Bike Image" placeholder="Bike Image"
+          <UU5.Forms.Text name="src" label={<UU5.Bricks.Lsi lsi={Lsi.buttons.image} /> } placeholder="Bike Image"
                           value={update ? this.props.currentBike.src : null}/>
 
           <UU5.Bricks.Div className="center" style="marginTop:24px">
             {update ?
               <UU5.Bricks.Button
-                content="Update Bike"
+                content={<UU5.Bricks.Lsi lsi={Lsi.buttons.update} /> }
                 onClick={() => {
                   // methods from FormMixin
                   const isValid = this.isValid();
@@ -45,7 +45,6 @@ const CustomForm = createReactClass({
                   const res = this.getValues();
 
                   isValid && this.props.handle({
-                    // awid: this.props.currentBike.awid,
                     name: res.name,
                     id: this.props.currentBike.id,
                     src: res.src
@@ -71,7 +70,7 @@ const CustomForm = createReactClass({
                 }}
               />
               : <UU5.Bricks.Button
-                content="Add Bike"
+                content={<UU5.Bricks.Lsi lsi={Lsi.buttons.addItem} /> }
                 onClick={() => {
                   const isValid = this.isValid();
                   const alertBus = this.getAlertBus();
@@ -100,7 +99,7 @@ const CustomForm = createReactClass({
               />
             }
             <UU5.Bricks.Button
-              content="Close Button"
+              content={<UU5.Bricks.Lsi lsi={Lsi.buttons.closeModal} /> }
               onClick={() => {
                 this.props.setForm ?
                   this.props.setForm(this.props.show) :
